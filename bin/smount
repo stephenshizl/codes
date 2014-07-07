@@ -1,0 +1,6 @@
+#!/bin/bash
+
+#sudo mount -t cifs -o username=chengdongdong,password=chengdongdong,uid=june //server4/chengdongdong/ /home/june/work/server4/
+sudo mount -t cifs -o username=chengdongdong,password=chengdongdong //server3/release/daily_build/ /home/june/work/images/daily_build/
+sudo mount -t cifs -o username=chengdongdong,password=chengdongdong //server3/release/weekly_build/ /home/june/work/images/weekly_build/
+sudo mount -t cifs -o username=chengdongdong,password=chengdongdong,uid=june //172.0.0.212/chengdongdong /home/june/work/server4/

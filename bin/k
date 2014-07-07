@@ -1,0 +1,13 @@
+#!/bin/bash
+# swapper of kermit, Autodetect newer ttyUSBx
+
+#set -x
+line=$( ls /dev/ttyUSB* 2>/dev/null | tail -1 )
+kermrc=~/.kermrc
+kermit=/usr/bin/kermit
+
+if [[ -n $line && -e $kermrc ]]; then
+sed -i "/set.*line/s/tty.*/${line##*/}/" $kermrc
+fi
+
+$kermit $@

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+machine="Winxp"
+
+if [ $# -gt 0 ]; then
+	machine=$@
+fi
+
+exec VBoxManage startvm ${machine}

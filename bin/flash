@@ -1,0 +1,65 @@
+#!/bin/bash
+
+cpserver=""
+mach=$1
+
+if [ $# -lt 2 ] && [ $# -gt 3 ]; then
+	echo "Usage"
+	echo "        nvflash [platform] [image]"
+	echo "Platform"
+	echo "        f0101|gamepad"
+	echo "Images"
+	echo "        -a,    -- all images"
+	echo "        -a -s, -- all images from server"
+	echo "        -bl,   -- bootloader"
+	echo "        -bt,   -- bootimage"
+	exit -1;
+fi
+
+if [ $mach == "f0101" ]; then
+	bct="Huawei_792_HC.cfg"
+elif [ $mach == "gamepad" ]; then
+	bct="bct.cfg"
+else
+	echo "platform error!" 
+	exit -1;
+fi
+
+if [ ${@:${#@}} == "-s" ]; then
+cpserver="-s"
+fi
+
+cd /home/june/work/images/$mach/
+
+case $2 in
+	bt)
+		echo "nvflash boot.img"
+		nvsync $mach boot.img bootloader.bin $cpserver
+		./nvflash --download 14 boot.img --bl bootloader.bin --go
+		shift 1
+		;;
+	bl)
+		echo "nvflash bootloader.bin"
+		nvsync $mach bootloader.bin $cpserver
+		./nvflash --download 4 bootloader.bin --bl bootloader.bin --go
+		shift 1
+		;;
+	rc)
+		echo "nvflash recovery.img"
+		nvsync $mach recovery.img $cpserver
+		./nvflash --download 12 recovery.img --bl bootloader.bin --go
+		shift 1
+		;;
+	nvidia)
+		echo "nvflash nvidia.bmp"
+		nvsync $mach nvidia.bmp $cpserver
+		./nvflash --download 20 nvidia.bmp --bl bootloader.bin --go
+		shift 1
+		;;
+	-a)
+		echo "nvflash *.img"
+		nvsync $mach -a $cpserver
+		./nvflash --bct ${bct} --setbct --odmdata 0x80498000 --configfile flash.cfg --create --bl bootloader.bin --go
+		shift 1
+		;;
+esac
