@@ -56,6 +56,12 @@ case $2 in
 		./nvflash --download 20 nvidia.bmp --bl bootloader.bin --go
 		shift 1
 		;;
+	sys)
+		echo "nvflash system.img"
+		nvsync $mach system.img $cpserver
+		./nvflash --download 15 system.img --bl bootloader.bin --go
+		shift 1
+		;;
 	-a)
 		echo "nvflash *.img"
 		nvsync $mach -a $cpserver
