@@ -1,6 +1,17 @@
 #!/bin/bash
 
-#sudo mount -t cifs -o username=chengdongdong,password=chengdongdong,uid=june //server4/chengdongdong/ /home/june/work/server4/
-sudo mount -t cifs -o username=chengdongdong,password=chengdongdong //server3/release/daily_build/ /home/june/work/images/daily_build/
-sudo mount -t cifs -o username=chengdongdong,password=chengdongdong //server3/release/weekly_build/ /home/june/work/images/weekly_build/
-sudo mount -t cifs -o username=chengdongdong,password=chengdongdong,uid=june //172.0.0.212/chengdongdong /home/june/work/server4/
+number=0
+while true
+do
+	ping 172.0.0.213 -c 1 
+	if [ $? -eq 0 ] || [ $((++number)) -ge 20 ] ; then
+		break;
+	fi
+	sleep 1
+
+done
+
+mount -t cifs -o username=chengdongdong,password=chengdongdong,uid=june //172.0.0.212/chengdongdong /home/june/work/server4/
+mount -t cifs -o username=chengdongdong,password=chengdongdong,uid=june //172.0.0.213/release /home/june/work/images/release
+mount -t cifs -o username=chengdongdong,password=chengdongdong,uid=june //172.0.0.213/release/daily_build/ /home/june/work/images/daily_build/
+mount -t cifs -o username=chengdongdong,password=chengdongdong,uid=june //172.0.0.213/release/weekly_build/ /home/june/work/images/weekly_build/
