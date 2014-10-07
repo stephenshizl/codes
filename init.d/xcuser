@@ -1,0 +1,23 @@
+#!/sbin/runscript
+
+#python2 /home/june/Dropbox/google/goagent-default/local/proxy.py&
+
+depend() {
+	use root
+}
+
+start() {
+
+#加载virtualbox modules
+	modprobe vboxdrv
+	modprobe vboxnetadp
+	modprobe vboxnetflt
+
+#自动挂载网络共享服务器
+	/home/june/codes/bin/smount
+
+#开机启动翻墙软件
+	nohup /home/june/Dropbox/google/shadowsocks/shadowsocks-Linux64bit/shadowsocks-Linux64bit&
+
+	return 0
+}
