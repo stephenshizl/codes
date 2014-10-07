@@ -1,71 +1,171 @@
+########################################################################
+# File Name: getopt.sh
+# Author: chengdong
+# mail: zchengdongdong@gmail.com
+# Created Time: Tue 07 Oct 2014 03:10:30 PM CST
+########################################################################
 #!/bin/bash
 
-cpserver=""
-mach=$1
+debug=1
 
-if [ $# -lt 2 ] && [ $# -gt 3 ]; then
-	echo "Usage"
-	echo "        nvflash [platform] [image]"
-	echo "Platform"
-	echo "        f0101|gamepad"
-	echo "Images"
-	echo "        -a,    -- all images"
-	echo "        -a -s, -- all images from server"
-	echo "        -bl,   -- bootloader"
-	echo "        -bt,   -- bootimage"
-	exit -1;
-fi
+printbug () {
+	if [[ $debug -eq 1 ]] ; then
+		echo "[debug]: $@"
+	fi
+}
 
-if [ $mach == "f0101" ]; then
-	bct="Huawei_792_HC.cfg"
-elif [ $mach == "gamepad" ]; then
-	bct="bct.cfg"
-else
-	echo "platform error!" 
-	exit -1;
-fi
+## -g --gamepad --> mach=gamepad
+## -f --f0101 --> mach=f0101
 
-if [ ${@:${#@}} == "-s" ]; then
-cpserver="-s"
+## -b --bootloader --> bootloader.bin
+bootloader="--download RBL bootloader.bin"
+## -k --boot --> boot.img
+boot="--download LNX boot.img"
+## -s --system --> system.img
+system="--download APP system.img"
+## -r --recovery --> recovery.img
+recovery="--download SOS recovery.img"
+## -n --nvidia --> nvidia.bmp
+nvidia="--download BMP nvidia.bmp"
+## -i --charging --> charging.bmp
+charging="--download CHG charging.bmp"
+## -c --charged --> charged.bmp
+charged="--download FBP charged.bmp"
+## -l --lowbat --> lowbat.bmp
+lowbat="--download LBP lowbat.bmp"
+## -u --fullycharged --> fullycharged.bmp
+fullycharged="--download FCG fullycharged.bmp"
+
+## -d --data --> data
+data=`date +"%Y%m%d"`
+## -o --server --> from server
+## -p --path --> from server path
+path="/home/june/work/server4"
+
+COMMAND="./nvflash"
+## -a --all --> all
+all_cmd="./nvflash --bct bct.cfg --setbct --odmdata 0x80498000 --configfile flash.cfg --create --bl bootloader.bin --go"
+
+TERGETS="gamepad,f0101,bootloader,boot,system,recovery,nvidia,charging,charged,lowbat,fullycharged,all,data,server,ncopy"
+ARGS=`getopt -o "gfbksrnicluad:op:" -l $TERGETS -n "flash:" -- "$@"`
+
+eval set -- "${ARGS}"
+
+while true; do 
+	case "${1}" in
+	-g|--gamepad)
+		shift;
+		mach="gamepad"
+		;;
+	-f|--f0101)
+		shift;
+		mach="f0101"
+		;;
+	-b|--bootloader)
+		shift;
+		COMMAND="${COMMAND} ${bootloader}"
+		;;
+	-k|--boot)
+		shift;
+		COMMAND="${COMMAND} ${boot}"
+		;;
+	-s|--system)
+		shift;
+		COMMAND="${COMMAND} ${system}"
+		;;
+	-r|--recovery)
+		shift;
+		COMMAND="${COMMAND} ${recovery}"
+		;;
+	-n|--nvidia)
+		shift;
+		COMMAND="${COMMAND} ${nvidia}"
+		;;
+	-i|--charging)
+		shift;
+		COMMAND="${COMMAND} ${charging}"
+		;;
+	-c|--charged)
+		shift;
+		COMMAND="${COMMAND} ${charged}"
+		;;
+	-l|--lowbat)
+		shift;
+		COMMAND="${COMMAND} ${lowbat}"
+		;; -u|--fullycharged)
+		shift;
+		COMMAND="${COMMAND} ${fullycharged}"
+		;;
+	-a|--all)
+		shift;
+		flag_all=1
+		COMMAND=${all_cmd}
+		;;
+	-d|--data)
+		data=${2}
+		shift 2;
+		flag_data=1
+		;;
+	-o|--server)
+		shift;
+		flag_server=1
+		;;
+	-p|--path)
+		path=${2}
+		shift 2;
+		;;
+	--ncopy)
+		shift;
+		ncp=1
+		;;
+	--)
+		shift;
+		break;
+		;;
+	*) 
+		echo "Internal error!"
+		shift;
+		exit 1
+		;;
+	esac
+done
+
+if [ ! -n ${mach} ] ; then
+	echo "mach error!"
+	exit 1;
 fi
 
 cd /home/june/work/images/$mach/
 
-case $2 in
-	bt)
-		echo "nvflash boot.img"
-		nvsync $mach boot.img bootloader.bin $cpserver
-		./nvflash --download 14 boot.img --bl bootloader.bin --go
-		shift 1
-		;;
-	bl)
-		echo "nvflash bootloader.bin"
-		nvsync $mach bootloader.bin $cpserver
-		./nvflash --download 4 bootloader.bin --bl bootloader.bin --go
-		shift 1
-		;;
-	rc)
-		echo "nvflash recovery.img"
-		nvsync $mach recovery.img $cpserver
-		./nvflash --download 12 recovery.img --bl bootloader.bin --go
-		shift 1
-		;;
-	nvidia)
-		echo "nvflash nvidia.bmp"
-		nvsync $mach nvidia.bmp $cpserver
-		./nvflash --download 20 nvidia.bmp --bl bootloader.bin --go
-		shift 1
-		;;
-	sys)
-		echo "nvflash system.img"
-		nvsync $mach system.img $cpserver
-		./nvflash --download 15 system.img --bl bootloader.bin --go
-		shift 1
-		;;
-	-a)
-		echo "nvflash *.img"
-		nvsync $mach -a $cpserver
-		./nvflash --bct ${bct} --setbct --odmdata 0x80498000 --configfile flash.cfg --create --bl bootloader.bin --go
-		shift 1
-		;;
-esac
+img_home=/home/june/work/images
+daily_home=/home/june/work/images/release/daily_build
+all_images="recovery.img system.img boot.img bootloader.bin
+		charged.bmp charging.bmp eks.dat flash.bct bct.cfg flash.cfg
+			fullycharged.bmp lowbat.bmp nvidia.bmp tegra114-macallan.dtb
+				xusb_sil_rel_fw userdata.img"
+
+if [[ $flag_server -eq 1 ]] || [[ $flag_data -eq 1 ]]; then
+	path=${daily_home}/${mach}/${data}
+fi
+
+
+if [[ ! -n ${ncp}  ]] ; then
+	if [[ ! -n ${flag_all} ]]; then
+		for target in $COMMAND; do
+		    if [ "${target##*.}" = "bmp" ] || [ "${target##*.}" = "img" ] || [ "${target##*.}" = "bin" ]; then
+				printbug "cp ${path}/${target} ${img_home}/${mach}/"
+				cp ${path}/${target} ${img_home}/${mach}/
+			fi
+		done
+		COMMAND="${COMMAND} --bl bootloader.bin --go"
+	else
+		for target in $all_images; do
+			printbug "cp ${path}/${target} ${img_home}/${mach}/"
+			cp ${path}/${target} ${img_home}/${mach}/
+		done
+		COMMAND=${all_cmd}
+	fi
+fi
+
+printbug ${COMMAND}
+${COMMAND}
