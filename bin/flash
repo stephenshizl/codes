@@ -46,7 +46,7 @@ COMMAND="./nvflash"
 ## -a --all --> all
 all_cmd="./nvflash --bct bct.cfg --setbct --odmdata 0x80498000 --configfile flash.cfg --create --bl bootloader.bin --go"
 
-TERGETS="gamepad,f0101,bootloader,boot,system,recovery,nvidia,charging,charged,lowbat,fullycharged,all,data,server,ncopy"
+TERGETS="gamepad,f0101,bootloader,boot,system,recovery,nvidia,charging,charged,lowbat,fullycharged,all,data,server,nocopy"
 ARGS=`getopt -o "gfbksrnicluad:op:" -l $TERGETS -n "flash:" -- "$@"`
 
 eval set -- "${ARGS}"
@@ -114,7 +114,7 @@ while true; do
 		path=${2}
 		shift 2;
 		;;
-	--ncopy)
+	--nocopy)
 		shift;
 		ncp=1
 		;;

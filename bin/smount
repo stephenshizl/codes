@@ -12,6 +12,9 @@ do
 done
 
 mount -t cifs -o username=chengdongdong,password=chengdongdong,uid=june //172.0.0.212/chengdongdong /home/june/work/server4/
-mount -t cifs -o username=chengdongdong,password=chengdongdong,uid=june //172.0.0.213/release /home/june/work/images/release
-mount -t cifs -o username=chengdongdong,password=chengdongdong,uid=june //172.0.0.213/release/daily_build/ /home/june/work/images/daily_build/
-mount -t cifs -o username=chengdongdong,password=chengdongdong,uid=june //172.0.0.213/release/weekly_build/ /home/june/work/images/weekly_build/
+mount -t cifs -o username=chengdongdong,password=chengdongdong,uid=june //172.0.0.212/release /home/june/work/images/release
+mount -t cifs -o username=chengdongdong,password=chengdongdong,uid=june //172.0.0.212/release/daily_build/ /home/june/work/images/daily_build/
+mount -t cifs -o username=chengdongdong,password=chengdongdong,uid=june //172.0.0.212/release/weekly_build/ /home/june/work/images/weekly_build/
+mount -t cifs -o username=chengdongdong,password=chengdongdong,uid=june //172.0.0.212/share/common/zhangsong /home/june/share/zhangsong/
+mount -t cifs -o username=chengdongdong,password=chengdongdong,uid=june //172.0.0.212/share/common /home/june/share/common
+#mount -t cifs -o password=dong //172.0.0.169/ /home/june/share/furao
