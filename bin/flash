@@ -7,7 +7,6 @@
 #!/bin/bash
 
 debug=1
-
 printbug () {
 	if [[ $debug -eq 1 ]] ; then
 		echo "[debug]: $@"
@@ -42,11 +41,11 @@ data=`date +"%Y%m%d"`
 ## -p --path --> from server path
 path="/home/june/work/server4"
 
-COMMAND="./nvflash"
+COMMAND="nvflash"
 ## -a --all --> all
-all_cmd="./nvflash --bct bct.cfg --setbct --odmdata 0x80498000 --configfile flash.cfg --create --bl bootloader.bin --go"
+all_cmd="nvflash --bct bct.cfg --setbct --odmdata 0x80498000 --configfile flash.cfg --create --bl bootloader.bin --go"
 
-TERGETS="gamepad,f0101,bootloader,boot,system,recovery,nvidia,charging,charged,lowbat,fullycharged,all,data,server,nocopy"
+TERGETS="gamepad,f0101,cctc,bootloader,boot,system,recovery,nvidia,charging,charged,lowbat,fullycharged,all,data,server,nocopy"
 ARGS=`getopt -o "gfbksrnicluad:op:" -l $TERGETS -n "flash:" -- "$@"`
 
 eval set -- "${ARGS}"
@@ -60,6 +59,10 @@ while true; do
 	-f|--f0101)
 		shift;
 		mach="f0101"
+		;;
+	--cctc)
+		shift;
+		mach="cctc"
 		;;
 	-b|--bootloader)
 		shift;

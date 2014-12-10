@@ -1,0 +1,27 @@
+#!/bin/bash
+########################################################################
+# File Name: screencap.sh
+# Author: chengdong
+# mail: zchengdongdong@gmail.com
+# Created Time: Fri 05 Dec 2014 11:13:26 AM CST
+########################################################################
+
+armdir=/sdcard/screencap
+adb shell "mkdir -p ${armdir}"
+#adb shell "rm ${armdir}/${1}*.png"
+
+for k in $( seq 1 $2 )
+do
+	echo adb shell screencap -p ${1}${k}.png
+	adb shell screencap -p ${armdir}/${1}${k}.png
+done
+
+pcdir=/tmp/screencat
+mkdir -p ${pcdir}
+#rm ${pcdir}/$1*.png
+
+for k in $( seq 1 $2 )
+do
+	echo adb pull ${armdir}/${1}${k}.png ${pcdir}/${1}${k}.png
+	adb pull ${armdir}/${1}${k}.png ${pcdir}
+done
