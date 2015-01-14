@@ -3,7 +3,7 @@
 number=0
 while true
 do
-	ping 172.0.0.213 -c 1 
+	ping 172.0.0.212 -c 1 
 	if [ $? -eq 0 ] || [ $((++number)) -ge 20 ] ; then
 		break;
 	fi
