@@ -160,12 +160,14 @@ if [[ ! -n ${ncp}  ]] ; then
 				cp ${path}/${target} ${img_home}/${mach}/
 			fi
 		done
+		sync
 		COMMAND="${COMMAND} --bl bootloader.bin --go"
 	else
 		for target in $all_images; do
 			printbug "cp ${path}/${target} ${img_home}/${mach}/"
 			cp ${path}/${target} ${img_home}/${mach}/
 		done
+		sync
 		COMMAND=${all_cmd}
 	fi
 fi
