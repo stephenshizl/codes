@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#set -x
+
+if [ "$1" = "-r" ] ; then
+
+	pgrep xautolock || xautolock -time 10 -locker "/usr/bin/xlock" &
+
+	xset dpms 600 600 600
+
+	xset -s default
+
+	exit 0
+fi
+
+xset -dpms
+
+xset -s 0
+
+kill -9 `pgrep xautolock` 2&>/dev/null
+
+
