@@ -6,22 +6,22 @@
 # Created Time: Fri 05 Dec 2014 11:13:26 AM CST
 ########################################################################
 
-armdir=/sdcard/screencap
-adb shell "mkdir -p ${armdir}"
-#adb shell "rm ${armdir}/${1}*.png"
+ARMdir=/sdcard/adb_screencap
+adb shell "mkdir -p ${ARMdir}"
+adb shell "rm ${ARMdir}/*.png"
 
-for k in $( seq 1 $2 )
+DATE=`date +"%Y%m%d-%H%M%S"`
+for K in $( seq 1 $1 )
 do
-	echo adb shell screencap -p ${1}${k}.png
-	adb shell screencap -p ${armdir}/${1}${k}.png
+	echo adb shell screencap -p ${K}.png
+	adb shell screencap -p ${ARMdir}/"scap"${K}.png
 done
 
-pcdir=/tmp/screencat
-mkdir -p ${pcdir}
-#rm ${pcdir}/$1*.png
+PCdir=/tmp/adb_screencat
+mkdir -p $PCdir
 
-for k in $( seq 1 $2 )
+for K in $( seq 1 $1 )
 do
-	echo adb pull ${armdir}/${1}${k}.png ${pcdir}/${1}${k}.png
-	adb pull ${armdir}/${1}${k}.png ${pcdir}
+	echo adb pull ${ARMdir}/"scap"${K}.png $PCdir/${DATE}"-Scap"${K}.png
+	adb pull ${ARMdir}/"scap"${K}.png $PCdir/${DATE}"-Scap"${K}.png
 done
