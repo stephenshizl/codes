@@ -1,0 +1,214 @@
+
+工程模式
+*#*#3646633#*#*
+
+TARGET_PRODUCT=p100 make menuconfig
+mediatek/config/p100/autoconfig/kconfig/project
+
+版本号:
+mediatek/config/common/ProjectConfig
+
+修改flash型号:
+mediatek/build/tools/emigen/MT6572/MemoryDeviceList_MT6572.xls
+./makeMtk -t p100 emigen
+
+
+全新编译:
+./makeMtk -t p100 new
+
+
+重编内核:
+./makeMtk -t p100 remake pl (preloader)
+./makeMtk -t p100 remake lk
+./makeMtk -t p100 remake kernel
+
+./makeMtk -t p100 bm_new kernel
+
+
+./makeMtk -t bootimage			(boot.img)
+./makeMtk -t recoveryimage		(recovery.img)
+./makeMtk -t systemimage		(system.img)
+
+./makeMtk -t factoryimage		(factory.img)
+
+
+生成的文件:
+out/target/product/p100
+
+日志文件:
+out/target/product/
+
+中间文件:
+mediatek/custom/out/p100/
+kernel/out/mediatek/custom/out/p100/kernel
+
+
+代码位置:
+mediatek/custom/common/kernel/touchpanel
+mediatek/custom/p100/kernel/touchpanel
+
+
+include:
+kernel/mediatek/platform/mt6572/kernel/core/include/mach
+
+
+ProjectConfig.mk:
+mediatek/config/p100/ProjectConfig.mk
+
+lCM:
+mediatek/custom/common/kernel/lcm
+
+TP:
+mediatek/custom/common/kernel/touchpanel/
+mediatek/custom/p100/kernel/touchpanel/
+mediatek/custom/common/kernel/touchpanel/src/tpd.h
+mediatek/custom/common/kernel/touchpanel/src/mtk_tpd.c
+
+kpd:
+mediatek/custom/p100/kernel/kpd/kpd/mtk_kpd.h
+mediatek/platform/mt6572/kernel/drivers/keypad/kpd.c
+mediatek/platform/mt6572/kernel/drivers/power/pmic_mt6323.c
+
+mediatek/custom/p100/kernel/dct/dct/cust_kpd.h
+mediatek/custom/p100/recovery/inc/cust_keys.h
+mediatek/custom/p100/factory/inc/cust_keys.h
+lk:
+mediatek/custom/p100/lk/include/target/cust_key.h
+
+
+Backlight:
+(mediatek/custom/common/kernel/leds/inc/cust_leds.h)
+mediatek/custom/p100/kernel/leds/mt65xx/cust_leds.c
+mediatek/custom/p100/lk/cust_leds.c
+
+
+Earphone:
+mediatek/platform/mt6572/kernel/drivers/accdet/accdet.c
+mediatek/custom/p100/kernel/headset/accdet/accdet_custom.h
+
+Audio:
+mediatek/custom/common/kernel/sound/inc/yusu_android_speaker.h
+mediatek/custom/common/kernel/sound/amp_6323pmic_spk/yusu_android_speaker.c
+mediatek/platform/mt6572/hardware/audio/aud_drv/
+
+IO:
+mediatek/platform/mt6572/kernel/core/include/mach/mt_gpio.h
+mediatek/platform/mt6572/kernel/core/include/mach/gpio_const.h
+
+DCT
+mediatek/custom/p100/kernel/dct/dct/codegen.dws
+mediatek/custom/p100/kernel/dct/dct/cust_gpio_usage.h
+
+
+
+Camera:
+mediatek/custom/p100/kernel/camera/camera/kd_camera_hw.h
+mediatek/custom/p100/kernel/camera/camera/kd_camera_hw.c
+mediatek/custom/common/kernel/imgsensor/inc/kd_imgsensor.h
+mediatek/custom/common/kernel/imgsensor/inc/kd_camera_feature.h
+mediatek/custom/p100/kernel/imgsensor/
+
+mediatek/custom/common/kernel/imgsensor/src/kd_sensorlist.h
+mediatek/custom/common/hal/imgsensor/src/sensorlist.cpp
+mediatek/custom/common/hal/lens/src/lenslist.cpp				[AF]
+
+mediatek/custom/mt6572/hal/imgsensor/src/cfg_setting_imgsensor.cpp
+mediatek/custom/mt6572/hal/camera/camera/cfg_setting_imgsensor.h
+
+mediatek/custom/common/hal/imgsensor/s5k8aayx_yuv
+mediatek/custom/common/kernel/imgsensor/s5k8aayx_yuv
+
+
+更新
+mediatek/custom/common/kernel/imgsensor/inc/kd_imgsensor.h
+mediatek/custom/common/kernel/imgsensor/src/kd_sensorlist.h
+mediatek/custom/common/hal/imgsensor/src/sensorlist.cpp
+
+mediatek/custom/p100/kernel/camera/camera/kd_camera_hw.c
+
+mediatek/custom/common/kernel/imgsensor/gc0309_yuv
+mediatek/custom/common/hal/imgsensor/gc0309_yuv
+
+显示相机app:
+packages/apps/Camera/src/com/android/camera/DisableCameraReceiver.java
+boolean needCameraActivity = xxx => boolean needCameraActivity = true
+adb push out/target/product/p100/system/app/Gallery2.apk /system/app
+
+./makeMtk -t p100 mm mediatek/platform/mt6572/hardware/camera/custom
+adb push out/target/product/p100/system/lib/libcameracustom.so /system/lib
+
+
+充电:
+mediatek/custom/mt6572/kernel/battery/battery/cust_charging.h
+mediatek/custom/mt6572/kernel/battery/battery/cust_battery_meter.h
+mediatek/custom/mt6572/kernel/battery/battery/cust_battery_meter_table.h
+mediatek/custom/p100/kernel/battery/battery/cust_battery.h
+
+
+工程模式:
+mediatek/custom/p100/factory/
+mediatek/custom/common/factory/
+mediatek/factory/
+
+
+NvRAM:
+mediatek/custom/p100/cgen/inc/CFG_file_info_custom.h
+g_akCFG_File_Custom
+
+
+
+
+打开坐标:
+----------------------------------------------------------------------------------------
+vi frameworks/base/policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+
+1152             if (mSystemReady) {
+1153                 int pointerLocation = Settings.System.getIntForUser(resolver,
+1154                         Settings.System.POINTER_LOCATION, 1, UserHandle.USER_CURRENT);
+1155                 if (mPointerLocationMode != pointerLocation) {
+1156                     mPointerLocationMode = pointerLocation;
+1157                     mHandler.sendEmptyMessage(pointerLocation != 0 ?
+1158                             MSG_ENABLE_POINTER_LOCATION : MSG_DISABLE_POINTER_LOCATION);
+1159                 }
+1160             }
+----------------------------------------------------------------------------------------
+
+./mmm.sh frameworks/base/policy/
+adb push out/target/product/p100/system/framework/android.policy.jar system/framework/
+
+
+
+cp EBR1 MBR MT6572_Android_scatter.txt android-info.txt boot.img cache.img clean_steps.mk factory.ini installed-files.txt kernel kernel_p100.bin lk.bin logo.bin preloader_p100.bin previous_build_config.mk ramdisk-recovery.img ramdisk.img recovery.img secro.img system.img userdata.img ~/share/mtk6572/
+
+cp MT6572_Android_scatter.txt preloader_p100.bin MBR EBR1 lk.bin boot.img recovery.img secro.img logo.bin system.img cache.img userdata.img ~/share/mtk6572/
+
+
+cp out/target/product/p100/kernel_p100.bin /work/mtk/tools/boot.img-kernel.img
+
+scp newboot.img ivan@192.168.0.197:/d:/share/mtk6572/boot.img
+
+smbclient -N //192.168.0.197/mtk6572
+
+
+
+LCM params:
+---------------------------------------------------------------------------------------
+mediatek/platform/mt6572/kernel/drivers/video/dsi_drv.c
+
+	data_rate = lcm_params->dsi.PLL_CLOCK*2;	data_rate: 312M
+	
+	txdiv  = 2
+	TXDIV0 = 1		clk_div1
+	TXDIV1 = 0		clk_div2
+	
+	SDM_PCW = data_rate*txdiv/13 => 0x30000000
+	
+	
+	
+---------------------------------------------------------------------------------------
+
+
+
+
+
+

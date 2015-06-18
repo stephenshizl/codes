@@ -1,0 +1,12 @@
+
+YUV camera调试
+
+//使 custom目录有读写权限
+adb shell
+mount -rw -o remount -t ext4 emmc@custom /custom
+
+//push 修改后的文件到机器
+adb push xxx custom/config
+
+//使修改有效 重启机器
+adb reboot

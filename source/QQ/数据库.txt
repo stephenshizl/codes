@@ -1,0 +1,13 @@
+create database myqq;
+
+use myqq;
+
+create table usermsg(username varchar(20),userid bigint(16) unsigned not null auto_increment,userpwd varchar (20),userip varchar(20),userport varchar(10),userstatu int(2) default 0,usermail varchar(40),primary key(userid));
+
+create table adminmsg(admin varchar(15) primary key,pwd varchar (20),ip varchar(20),port varchar(10));
+
+insert into usermsg values("a","a","a","127.0.0.1","4567",0,"aa@gmail.com");
+
+insert into usermsg values("b","b","b","127.0.0.1","4567",0,"aa@gmail.com");
+
+insert into usermsg values("c","c","c","127.0.0.1","4567",0,"aa@gmail.com");

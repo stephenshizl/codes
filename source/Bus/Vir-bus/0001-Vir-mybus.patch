@@ -1,0 +1,490 @@
+From 69a5ef67961ba71e399b8e824df285b8788f3071 Mon Sep 17 00:00:00 2001
+From: june <zchengdongdong@gmail.com>
+Date: Thu, 13 Dec 2012 15:48:29 +0800
+Subject: [PATCH] Vir-mybus
+
+---
+ arch/arm/mach-rk29/board-rk29-ddr3sdk.c |  25 +++-
+ drivers/base/base.h                     |   1 +
+ drivers/base/init.c                     |   1 +
+ drivers/input/Kconfig                   |  14 ++
+ drivers/input/Makefile                  |   4 +-
+ drivers/input/bus_basic.c               | 231 ++++++++++++++++++++++++++++++++
+ drivers/input/driver.c                  |  65 +++++++++
+ include/linux/bus_basic.h               |  42 ++++++
+ 8 files changed, 381 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/input/bus_basic.c
+ create mode 100644 drivers/input/driver.c
+ create mode 100644 include/linux/bus_basic.h
+
+diff --git a/arch/arm/mach-rk29/board-rk29-ddr3sdk.c b/arch/arm/mach-rk29/board-rk29-ddr3sdk.c
+index d7f2161..25d0ae7 100755
+--- a/arch/arm/mach-rk29/board-rk29-ddr3sdk.c
++++ b/arch/arm/mach-rk29/board-rk29-ddr3sdk.c
+@@ -59,6 +59,7 @@
+ #include <linux/mtd/partitions.h>
+ #include <linux/i2c-gpio.h>
+ #include <linux/mpu.h>
++#include <linux/bus_basic.h>
+ #include "devices.h"
+ #include "../../../drivers/input/touchscreen/xpt2046_cbn_ts.h"
+ 
+@@ -3248,6 +3249,27 @@ static void __init rk29_board_iomux_init(void)
+ 	#endif
+ }
+ 
++static struct mybus_device mybus_dev1 = {
++	.name = "mybus_dev1",
++	.flage = 0,
++};
++
++static struct mybus_device mybus_dev2 = {
++	.name = "mybus_dev2",
++	.flage = 0,
++};
++
++static struct mybus_device mybus_dev3 = {
++	.name = "mybus_dev3",
++	.flage = 0,
++};
++
++static struct mybus_device *mybus_dev[] = {
++	&mybus_dev1,
++	&mybus_dev2,
++	&mybus_dev3,
++};
++
+ static struct platform_device *devices[] __initdata = {
+ 
+ #ifdef CONFIG_KEYBOARD_MATRIX
+@@ -3688,7 +3710,8 @@ static void __init machine_rk29_board_init(void)
+ 	board_power_init();
+ 	board_update_cpufreq_table(freq_table);
+ 
+-		platform_add_devices(devices, ARRAY_SIZE(devices));
++	mybus_add_device(mybus_dev, ARRAY_SIZE(mybus_dev));
++	platform_add_devices(devices, ARRAY_SIZE(devices));
+ #ifdef CONFIG_I2C0_RK29
+ 	i2c_register_board_info(default_i2c0_data.bus_num, board_i2c0_devices,
+ 			ARRAY_SIZE(board_i2c0_devices));
+diff --git a/drivers/base/base.h b/drivers/base/base.h
+index 2ca7f5b..23a1f54 100644
+--- a/drivers/base/base.h
++++ b/drivers/base/base.h
+@@ -105,6 +105,7 @@ extern int hypervisor_init(void);
+ static inline int hypervisor_init(void) { return 0; }
+ #endif
+ extern int platform_bus_init(void);
++extern int my_bus_init(void);
+ extern int system_bus_init(void);
+ extern int cpu_dev_init(void);
+ 
+diff --git a/drivers/base/init.c b/drivers/base/init.c
+index c8a934e..2503e82 100644
+--- a/drivers/base/init.c
++++ b/drivers/base/init.c
+@@ -30,6 +30,7 @@ void __init driver_init(void)
+ 	/* These are also core pieces, but must come after the
+ 	 * core core pieces.
+ 	 */
++	my_bus_init();
+ 	platform_bus_init();
+ 	system_bus_init();
+ 	cpu_dev_init();
+diff --git a/drivers/input/Kconfig b/drivers/input/Kconfig
+index 85b41ff..5b70824 100755
+--- a/drivers/input/Kconfig
++++ b/drivers/input/Kconfig
+@@ -39,6 +39,20 @@ config INPUT_FF_MEMLESS
+ 	  To compile this driver as a module, choose M here: the
+ 	  module will be called ff-memless.
+ 
++config BUS_BASIC
++	tristate "bus basic test"
++	default y
++	---help---
++	  To compile this driver as a module, choose M here: the
++	  module will be called ff-memless.
++
++config DRIVER_TEST
++	tristate "driver test"
++	default y
++	---help---
++	  To compile this driver as a module, choose M here: the
++	  module will be called ff-memless.
++
+ config INPUT_POLLDEV
+ 	tristate "Polled input device skeleton"
+ 	help
+diff --git a/drivers/input/Makefile b/drivers/input/Makefile
+index f9357d4..a643a5b 100755
+--- a/drivers/input/Makefile
++++ b/drivers/input/Makefile
+@@ -28,4 +28,6 @@ obj-$(CONFIG_INPUT_APMPOWER)	+= apm-power.o
+ obj-$(CONFIG_INPUT_KEYRESET)	+= keyreset.o
+ obj-$(CONFIG_LIGHT_SENSOR_DEVICE) += lightsensor/
+ obj-$(CONFIG_XEN_KBDDEV_FRONTEND)	+= xen-kbdfront.o
+-obj-y += magnetometer/
+\ No newline at end of file
++obj-$(CONFIG_BUS_BASIC)	+= bus_basic.o
++obj-$(CONFIG_DRIVER_TEST)	+= driver.o
++obj-y += magnetometer/
+diff --git a/drivers/input/bus_basic.c b/drivers/input/bus_basic.c
+new file mode 100644
+index 0000000..d1ab7a2
+--- /dev/null
++++ b/drivers/input/bus_basic.c
+@@ -0,0 +1,231 @@
++/*************************************************************************
++    > File Name: drivers/input/bus_basic.c
++    > Author: chengdong
++    > Mail: zchengdongdong@gmail.com 
++    > Created Time: Wed 05 Dec 2012 03:12:56 PM CST
++ ************************************************************************/
++
++#include <linux/module.h>
++#include <linux/kernel.h>
++#include <linux/init.h>
++#include <linux/string.h>
++#include <linux/pm.h>
++#include <linux/bus_basic.h>
++
++MODULE_LICENSE("Dual BSD/GPL");
++
++static int mybus_match(struct device *dev, struct device_driver *driver);
++void mybus_dev_release(struct device *dev);
++static char *Version = "$Revision:1.0 $";
++
++static int mybus_legacy_suspend(struct device *dev) {
++
++	struct mybus_device *mybus_dev = container_of(dev, struct mybus_device, dev);
++	struct mybus_driver *mybus_drv = container_of(dev->driver, struct mybus_driver, driver);
++	int ret;
++
++	if(dev->driver && mybus_drv->suspend)
++		ret = mybus_drv->suspend(mybus_dev, PMSG_SUSPEND);
++
++	return ret;
++}
++
++static int mybus_legacy_resume(struct device *dev) {
++
++	struct mybus_device *mybus_dev = container_of(dev, struct mybus_device, dev);
++	struct mybus_driver *mybus_drv = container_of(dev->driver, struct mybus_driver, driver);
++	int ret;
++
++	if(dev->driver && mybus_drv->resume)
++		ret = mybus_drv->resume(mybus_dev);
++
++	return ret;
++}
++
++static int mybus_suspend(struct device *dev) {
++	
++	int ret = 0;
++	struct device_driver *drv = dev->driver;
++	
++	if(drv == NULL)
++		return 0;
++
++	if(drv->pm) {
++		if(drv->pm->suspend)
++		ret = drv->pm->suspend(dev);
++	} else {
++		ret = mybus_legacy_suspend(dev);
++	}
++	
++	return ret;
++}
++
++static int mybus_resume(struct device *dev) {
++	
++	int ret;
++	struct device_driver *drv = dev->driver;
++	
++	printk("func :%s\n", __func__);
++	if(drv == NULL)
++		return 0;
++
++	if(drv->pm) {
++		if(drv->pm->resume)
++		ret = drv->pm->resume(dev);
++	} else {
++		ret = mybus_legacy_resume(dev);
++	}
++	
++	return ret;
++}
++
++static int mybus_probe(struct device *dev) {
++
++	int ret;
++	struct mybus_device *mybus_dev = container_of(dev, struct mybus_device, dev);
++	struct mybus_driver *mybus_drv = container_of(dev->driver, struct mybus_driver, driver);
++
++	if(dev->driver && mybus_drv->probe)
++		ret = mybus_drv->probe(mybus_dev);
++
++	return 0;
++}
++
++
++static int poweroff(struct device *dev) {
++
++	return 0;
++}
++
++static struct dev_pm_ops mybus_pm_ops = {
++
++	.suspend = mybus_suspend,
++	/*.poweroff = mybus_poweroff,*/
++	.resume = mybus_resume,
++};
++
++static struct mybus my_bus_type = {
++	.mybus_type = {
++		.name = "my_bus",
++		.match = &mybus_match,
++		.pm = &mybus_pm_ops,
++	},
++};
++
++static struct mybus_device mybus_dev = {
++		.name	= "mybus_dev",
++		.dev	= {
++			.kobj.name	= "mybus_dev",
++			.bus	= &my_bus_type,
++			.release = mybus_dev_release,
++		},
++};
++
++void mybus_dev_release(struct device *dev)
++{
++	printk("mybus_dev.name :%s, mybus_dev.dev.kobj.name :%s\n", mybus_dev.name, mybus_dev.dev.kobj.name);
++	printk("mybus_dev release\n");
++}
++
++static int mybus_match(struct device *dev, struct device_driver *driver)
++{
++	printk("mybus_match driver->name:%s\n", driver->name);
++	return !strncmp(dev->kobj.name, driver->name, strlen(driver->name));
++}
++
++static int show_bus_version(struct bus_type *bus, char *buf)
++{
++	return snprintf(buf, PAGE_SIZE, "%s\n", Version);
++}
++
++static int store_bus_version(struct bus_type *bus, const char *buf, size_t count)
++{
++	printk("buf:%s, count:%d \n", buf, count);
++	return count;
++}
++
++static BUS_ATTR(version, S_IALLUGO, show_bus_version, store_bus_version);
++
++int mybus_add_device(struct mybus_device **device, unsigned len)
++{
++	int i, ret = 0;
++	for(i = 0; i < len; i++){
++		printk("__func__ ,name :%s\n", device[i]->name);
++		device_initialize(&device[i]->dev);
++		ret = mybus_register_device(device[i]);
++		if(ret) {
++			while(--i >= 0)
++				ret = mybus_unregister_device(device[i]);
++			break;
++		}
++	}
++
++	return ret;
++}
++
++int mybus_register_device(struct mybus_device *pdev)
++{
++
++	int ret;
++	char *dev_name = pdev->name;
++
++	if(!pdev->dev.parent)
++		pdev->dev.parent = &mybus_dev.dev;
++
++	pdev->dev.bus = &my_bus_type;
++	pdev->dev.release = mybus_dev_release,
++	dev_set_name(&pdev->dev, "%s", pdev->name);
++
++	ret = device_add(&pdev->dev);
++
++	return ret;
++}
++
++int mybus_register_driver(struct mybus_driver *pdrv)
++{
++	pdrv->driver.bus = &my_bus_type;
++	if(pdrv->probe)
++		pdrv->driver.probe = mybus_probe;
++	return driver_register(&pdrv->driver);
++}
++
++
++int mybus_unregister_device(struct mybus_device *pdev)
++{
++	printk("func %s\n", __func__);
++	device_unregister(&pdev->dev);
++	return 0;
++}
++
++int mybus_unregister_driver(struct mybus_driver *pdrv)
++{
++	driver_unregister(&pdrv->driver);
++	return 0;
++}
++/*模块加载函数*/
++int __init my_bus_init(void)
++{
++	int ret;
++
++	/*注册总线*/
++	ret = bus_register(&my_bus_type.mybus_type);
++	if(ret)
++		return ret;
++	
++	/*创建属性文件*/
++	if(bus_create_file(&my_bus_type.mybus_type, &bus_attr_version))
++		printk(KERN_NOTICE "Fail to create version attribute!\n");
++
++	device_register(&mybus_dev.dev);
++	return ret;
++}
++
++static void my_bus_exit(void)
++{
++	mybus_unregister_device(&mybus_dev);
++	bus_unregister(&my_bus_type.mybus_type);
++	printk("my_bus_type.mybus_type.name :%s\n", my_bus_type.mybus_type.name);
++}
++
++/*module_init(my_bus_init);*/
++/*module_exit(my_bus_exit);*/
+diff --git a/drivers/input/driver.c b/drivers/input/driver.c
+new file mode 100644
+index 0000000..d44d958
+--- /dev/null
++++ b/drivers/input/driver.c
+@@ -0,0 +1,65 @@
++/*************************************************************************
++    > File Name: drivers/input/driver.c
++    > Author: chengdong
++    > Mail: zchengdongdong@gmail.com 
++    > Created Time: Thu 06 Dec 2012 03:43:04 PM CST
++ ************************************************************************/
++
++#include <linux/device.h>
++#include <linux/module.h>
++#include <linux/kernel.h>
++#include <linux/init.h>
++#include <linux/string.h>
++#include <linux/bus_basic.h>
++
++MODULE_LICENSE("Dual BSD/GPL");
++
++static int my_probe(struct device *dev)
++{
++
++	printk("mybus_driver func:%s\n", __func__);
++	printk("Driver found device which my driver can handle!\n");
++	return 0;
++}
++
++static int my_suspend(struct device *dev)
++{
++	printk("mybus_driver func:%s\n", __func__);
++	printk("Driver found device which my driver can handle!\n");
++	return 0;
++}
++
++static int my_resume(struct device *dev)
++{
++	printk("mybus_driver func:%s\n", __func__);
++	printk("Driver found device which my driver can handle!\n");
++	return 0;
++}
++
++static struct mybus_driver mybus_drv= {
++		.driver = {
++			.name = "mybus_dev1"
++		},
++		.probe = my_probe,
++		.suspend = &my_suspend,
++		.resume = &my_resume,
++};
++
++static int __init my_driver_init(void)
++{
++	int ret;
++	 
++	/*注册驱动*/
++	/*driver_register(&my_driver);*/
++	ret = mybus_register_driver(&mybus_drv);
++
++	return ret;
++}
++
++static void my_driver_exit(void)
++{
++	mybus_unregister_driver(&mybus_drv);
++}
++
++module_init(my_driver_init);
++module_exit(my_driver_exit);
+diff --git a/include/linux/bus_basic.h b/include/linux/bus_basic.h
+new file mode 100644
+index 0000000..88edf9b
+--- /dev/null
++++ b/include/linux/bus_basic.h
+@@ -0,0 +1,42 @@
++/*************************************************************************
++    > File Name: include/linux/bus.h
++    > Author: chengdong
++    > Mail: zchengdongdong@gmail.com 
++    > Created Time: Mon 10 Dec 2012 09:55:16 AM CST
++ ************************************************************************/
++
++#include <linux/device.h>
++
++struct mybus_driver;
++struct mybus_device;
++
++struct mybus {
++	struct bus_type mybus_type;
++};
++
++extern int mybus_register_device(struct mybus_device *device);
++extern int mybus_add_device(struct mybus_device **device, unsigned len);
++extern int mybus_unregister_device(struct mybus_device *device);
++
++extern int mybus_register_driver(struct mybus_driver *drv);
++extern int mybus_unregister_driver(struct mybus_driver *drv);
++
++struct mybus_driver {
++
++	struct device_driver driver;
++	struct bus_device_id *id_table;
++	int (*probe)(struct mybus_device *dev);
++	int (*remove)(struct mybus_device *dev);
++	int (*suspend)(struct mybus_device *dev, pm_message_t mesg);
++	int (*resume)(struct mybus_device *dev);
++
++};
++
++struct mybus_device {
++
++	char *name;
++	int irq;
++	unsigned short flage;
++	unsigned short addr;
++	struct device dev;
++};
+-- 
+1.7.12
+
