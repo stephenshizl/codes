@@ -1,0 +1,79 @@
+#!/bin/bash
+
+M=$(pwd -P)
+M="${M%/*}"
+MOUT=out/target/product/qucii1605
+MKBOOTIMG=$M/out/host/linux-x86/bin/mkbootimg
+DTBTOOL=$M/out/host/linux-x86/bin/dtbTool
+BOOT_SIGNER=out/host/linux-x86/bin/boot_signer
+GCC_DIR=$M/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9
+CROSS=aarch64-linux-android-
+KERNEL_CONFIG=msm_defconfig
+OUT_DIR=
+SRC_DIR=
+
+set -e
+
+#${CROSS}gcc -v > /dev/null 2>&1
+#${CROSS}gcc -v
+#[ $? -eq 0 ] || export PATH=${GCC_DIR}/bin:$PATH
+export PATH=${GCC_DIR}/bin:$PATH
+
+case $1 in
+	3901)
+		name=3901
+		SRC_DIR=$(pwd -P)
+		OUT_DIR=$(pwd -P)/out
+		shift 1
+		;;
+	1605)
+		name=1605
+		SRC_DIR=$(pwd -P)
+		OUT_DIR=$(pwd -P)/out
+		shift 1
+		;;
+	*)
+		name=obj/KERNEL_OBJ
+		SRC_DIR=$(pwd -P)
+		OUT_DIR=${M}/${MOUT}
+		;;
+esac
+
+action=$@
+out=${OUT_DIR}/${name}
+image_dir=$M/$MOUT
+cmdline_parameters='console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk --base 0x80000000 --pagesize 2048'
+#
+mkdir -p ${out}
+[ ! $@ ] && action=Image
+#if [ ! -e ${out}/.config ]; then
+cp -vf $(pwd -P)/arch/arm64/configs/$KERNEL_CONFIG ${out}/.config
+make -C ${SRC_DIR} ARCH=arm64 CROSS_COMPILE="$CROSS" -j24 O=${out} $KERNEL_CONFIG || exit 1
+#fi
+
+echo "making ${action} for ${name}"
+
+make -C ${SRC_DIR} ARCH=arm64 CROSS_COMPILE="$CROSS" KCFLAGS=-mno-android -j24 O=${out} ${action} || exit 1
+
+make -C ${SRC_DIR} ARCH=arm64 CROSS_COMPILE="$CROSS" KCFLAGS=-mno-android -j24 O=${out} || exit 1
+
+$DTBTOOL -o ${image_dir}/dt.img -s 2048 -p ${out}/scripts/dtc/ ${out}/arch/arm64/boot/dts/
+
+# copy images
+image="${out}/arch/arm64/boot/Image"
+test -e ${image} && cp -vf ${image} ${image_dir}/kernel
+
+# mkbootimg boot.img
+$MKBOOTIMG --kernel ${image_dir}/kernel --ramdisk ${image_dir}/ramdisk.img --cmdline "${cmdline_parameters}" --dt ${image_dir}/dt.img --output ${image_dir}/boot.img
+
+# boot_signer boot.img
+pushd $M > /dev/null 2>&1
+export PATH=build/tools/java-7-openjdk-amd64/bin:$PATH
+${BOOT_SIGNER} /boot ${image_dir}/boot.img build/target/product/security/verity_private_dev_key ${image_dir}/boot.img
+popd > /dev/null 2>&1
+
+#successfully
+echo "${image_dir}/boot.img created successfully."
+
+# acopy boot.img
+acopy OUT ${image_dir}/boot.img
