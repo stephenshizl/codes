@@ -1,0 +1,742 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ACPI_ID_LEN	mod_devicetable.h	182;"	d
+AP_DEVICE_ID_MATCH_DEVICE_TYPE	mod_devicetable.h	171;"	d
+BAT_LOW	board-rk29-ddr3sdk.c	749;"	d	file:
+BL_EN_PIN	board-rk29-ddr3sdk.c	2329;"	d	file:
+BL_EN_VALUE	board-rk29-ddr3sdk.c	2330;"	d	file:
+BU92747GUW_PWDN_MUX_MODE	board-rk29-ddr3sdk.c	438;"	d	file:
+BU92747GUW_PWDN_MUX_NAME	board-rk29-ddr3sdk.c	437;"	d	file:
+BU92747GUW_PWDN_PIN	board-rk29-ddr3sdk.c	436;"	d	file:
+BU92747GUW_RESET_MUX_MODE	board-rk29-ddr3sdk.c	434;"	d	file:
+BU92747GUW_RESET_MUX_NAME	board-rk29-ddr3sdk.c	433;"	d	file:
+BU92747GUW_RESET_PIN	board-rk29-ddr3sdk.c	432;"	d	file:
+BU92747_CIR_IRQ_PIN	board-rk29-ddr3sdk.c	570;"	d	file:
+CCW_DEVICE_ID_MATCH_CU_MODEL	mod_devicetable.h	158;"	d
+CCW_DEVICE_ID_MATCH_CU_TYPE	mod_devicetable.h	157;"	d
+CCW_DEVICE_ID_MATCH_DEVICE_MODEL	mod_devicetable.h	160;"	d
+CCW_DEVICE_ID_MATCH_DEVICE_TYPE	mod_devicetable.h	159;"	d
+CHG_OK	board-rk29-ddr3sdk.c	748;"	d	file:
+CIR_IRQ_PIN_IOMUX_NAME	board-rk29-ddr3sdk.c	571;"	d	file:
+CIR_IRQ_PIN_IOMUX_VALUE	board-rk29-ddr3sdk.c	572;"	d	file:
+CONFIG_SDMMC0_USE_DMA	board-rk29-ddr3sdk.c	2736;"	d	file:
+CONFIG_SDMMC1_USE_DMA	board-rk29-ddr3sdk.c	2765;"	d	file:
+CONFIG_SENSOR_0	board-rk29-ddr3sdk.c	72;"	d	file:
+CONFIG_SENSOR_1	board-rk29-ddr3sdk.c	84;"	d	file:
+CONFIG_SENSOR_FALSH_PIN_0	board-rk29-ddr3sdk.c	78;"	d	file:
+CONFIG_SENSOR_FALSH_PIN_1	board-rk29-ddr3sdk.c	90;"	d	file:
+CONFIG_SENSOR_FLASHACTIVE_LEVEL_0	board-rk29-ddr3sdk.c	82;"	d	file:
+CONFIG_SENSOR_FLASHACTIVE_LEVEL_1	board-rk29-ddr3sdk.c	94;"	d	file:
+CONFIG_SENSOR_FLASH_IOCTL_USR	board-rk29-ddr3sdk.c	2247;"	d	file:
+CONFIG_SENSOR_IIC_ADAPTER_ID_0	board-rk29-ddr3sdk.c	74;"	d	file:
+CONFIG_SENSOR_IIC_ADAPTER_ID_1	board-rk29-ddr3sdk.c	86;"	d	file:
+CONFIG_SENSOR_IIC_ADDR_0	board-rk29-ddr3sdk.c	73;"	d	file:
+CONFIG_SENSOR_IIC_ADDR_1	board-rk29-ddr3sdk.c	85;"	d	file:
+CONFIG_SENSOR_POWERACTIVE_LEVEL_0	board-rk29-ddr3sdk.c	79;"	d	file:
+CONFIG_SENSOR_POWERACTIVE_LEVEL_1	board-rk29-ddr3sdk.c	91;"	d	file:
+CONFIG_SENSOR_POWERDNACTIVE_LEVEL_0	board-rk29-ddr3sdk.c	81;"	d	file:
+CONFIG_SENSOR_POWERDNACTIVE_LEVEL_1	board-rk29-ddr3sdk.c	93;"	d	file:
+CONFIG_SENSOR_POWERDN_PIN_0	board-rk29-ddr3sdk.c	77;"	d	file:
+CONFIG_SENSOR_POWERDN_PIN_1	board-rk29-ddr3sdk.c	89;"	d	file:
+CONFIG_SENSOR_POWERDOWN_IOCTL_USR	board-rk29-ddr3sdk.c	2246;"	d	file:
+CONFIG_SENSOR_POWER_IOCTL_USR	board-rk29-ddr3sdk.c	2244;"	d	file:
+CONFIG_SENSOR_POWER_PIN_0	board-rk29-ddr3sdk.c	75;"	d	file:
+CONFIG_SENSOR_POWER_PIN_1	board-rk29-ddr3sdk.c	87;"	d	file:
+CONFIG_SENSOR_RESETACTIVE_LEVEL_0	board-rk29-ddr3sdk.c	80;"	d	file:
+CONFIG_SENSOR_RESETACTIVE_LEVEL_1	board-rk29-ddr3sdk.c	92;"	d	file:
+CONFIG_SENSOR_RESET_IOCTL_USR	board-rk29-ddr3sdk.c	2245;"	d	file:
+CONFIG_SENSOR_RESET_PIN_0	board-rk29-ddr3sdk.c	76;"	d	file:
+CONFIG_SENSOR_RESET_PIN_1	board-rk29-ddr3sdk.c	88;"	d	file:
+CPU_PRIO	board-rk29-ddr3sdk.c	3779;"	d	file:
+DC_CHECK_PIN	board-rk29-ddr3sdk.c	1240;"	d	file:
+DC_CHECK_PIN	board-rk29-ddr3sdk.c	746;"	d	file:
+DEBOUNCE_REPTIME	board-rk29-ddr3sdk.c	3592;"	d	file:
+DMI_BIOS_DATE	mod_devicetable.h	/^	DMI_BIOS_DATE,$/;"	e	enum:dmi_field
+DMI_BIOS_VENDOR	mod_devicetable.h	/^	DMI_BIOS_VENDOR,$/;"	e	enum:dmi_field
+DMI_BIOS_VERSION	mod_devicetable.h	/^	DMI_BIOS_VERSION,$/;"	e	enum:dmi_field
+DMI_BOARD_ASSET_TAG	mod_devicetable.h	/^	DMI_BOARD_ASSET_TAG,$/;"	e	enum:dmi_field
+DMI_BOARD_NAME	mod_devicetable.h	/^	DMI_BOARD_NAME,$/;"	e	enum:dmi_field
+DMI_BOARD_SERIAL	mod_devicetable.h	/^	DMI_BOARD_SERIAL,$/;"	e	enum:dmi_field
+DMI_BOARD_VENDOR	mod_devicetable.h	/^	DMI_BOARD_VENDOR,$/;"	e	enum:dmi_field
+DMI_BOARD_VERSION	mod_devicetable.h	/^	DMI_BOARD_VERSION,$/;"	e	enum:dmi_field
+DMI_CHASSIS_ASSET_TAG	mod_devicetable.h	/^	DMI_CHASSIS_ASSET_TAG,$/;"	e	enum:dmi_field
+DMI_CHASSIS_SERIAL	mod_devicetable.h	/^	DMI_CHASSIS_SERIAL,$/;"	e	enum:dmi_field
+DMI_CHASSIS_TYPE	mod_devicetable.h	/^	DMI_CHASSIS_TYPE,$/;"	e	enum:dmi_field
+DMI_CHASSIS_VENDOR	mod_devicetable.h	/^	DMI_CHASSIS_VENDOR,$/;"	e	enum:dmi_field
+DMI_CHASSIS_VERSION	mod_devicetable.h	/^	DMI_CHASSIS_VERSION,$/;"	e	enum:dmi_field
+DMI_MATCH	mod_devicetable.h	472;"	d
+DMI_NONE	mod_devicetable.h	/^	DMI_NONE,$/;"	e	enum:dmi_field
+DMI_PRODUCT_NAME	mod_devicetable.h	/^	DMI_PRODUCT_NAME,$/;"	e	enum:dmi_field
+DMI_PRODUCT_SERIAL	mod_devicetable.h	/^	DMI_PRODUCT_SERIAL,$/;"	e	enum:dmi_field
+DMI_PRODUCT_UUID	mod_devicetable.h	/^	DMI_PRODUCT_UUID,$/;"	e	enum:dmi_field
+DMI_PRODUCT_VERSION	mod_devicetable.h	/^	DMI_PRODUCT_VERSION,$/;"	e	enum:dmi_field
+DMI_STRING_MAX	mod_devicetable.h	/^	DMI_STRING_MAX,$/;"	e	enum:dmi_field
+DMI_SYS_VENDOR	mod_devicetable.h	/^	DMI_SYS_VENDOR,$/;"	e	enum:dmi_field
+EBC_POWER_ON_IOMUX_NAME	board-rk29-ddr3sdk.c	856;"	d	file:
+EBC_POWER_ON_IOMUX_NAME	board-rk29-ddr3sdk.c	865;"	d	file:
+EBC_POWER_ON_IOMUX_VALUE	board-rk29-ddr3sdk.c	857;"	d	file:
+EBC_POWER_ON_IOMUX_VALUE	board-rk29-ddr3sdk.c	866;"	d	file:
+EBC_POWER_ON_PIN	board-rk29-ddr3sdk.c	855;"	d	file:
+EBC_POWER_ON_PIN	board-rk29-ddr3sdk.c	864;"	d	file:
+EBC_POWER_ON_VB_PIN	board-rk29-ddr3sdk.c	858;"	d	file:
+EBC_VCOM_PIN	board-rk29-ddr3sdk.c	860;"	d	file:
+EETI_EGALAX_init_platform_hw	board-rk29-ddr3sdk.c	/^static int EETI_EGALAX_init_platform_hw(void)$/;"	f	file:
+EISA_DEVICE_MODALIAS_FMT	mod_devicetable.h	344;"	d
+EISA_SIG_LEN	mod_devicetable.h	336;"	d
+FB_DISPLAY_ON_PIN	board-rk29-ddr3sdk.c	201;"	d	file:
+FB_DISPLAY_ON_VALUE	board-rk29-ddr3sdk.c	206;"	d	file:
+FB_ID	board-rk29-ddr3sdk.c	200;"	d	file:
+FB_LCD_CABC_EN_PIN	board-rk29-ddr3sdk.c	203;"	d	file:
+FB_LCD_STANDBY_PIN	board-rk29-ddr3sdk.c	202;"	d	file:
+FB_LCD_STANDBY_VALUE	board-rk29-ddr3sdk.c	207;"	d	file:
+FB_MCU_FMK_PIN	board-rk29-ddr3sdk.c	204;"	d	file:
+GPU_HIGH_CLOCK	board-rk29-ddr3sdk.c	3055;"	d	file:
+GPU_LOW_CLOCK	board-rk29-ddr3sdk.c	3056;"	d	file:
+GPU_PRIO	board-rk29-ddr3sdk.c	3776;"	d	file:
+HID_ANY_ID	mod_devicetable.h	134;"	d
+I2C_MODULE_PREFIX	mod_devicetable.h	394;"	d
+I2C_NAME_SIZE	mod_devicetable.h	393;"	d
+IEEE1394_MATCH_MODEL_ID	mod_devicetable.h	26;"	d
+IEEE1394_MATCH_SPECIFIER_ID	mod_devicetable.h	27;"	d
+IEEE1394_MATCH_VENDOR_ID	mod_devicetable.h	25;"	d
+IEEE1394_MATCH_VERSION	mod_devicetable.h	28;"	d
+INPUT_DEVICE_ID_ABS_MAX	mod_devicetable.h	290;"	d
+INPUT_DEVICE_ID_EV_MAX	mod_devicetable.h	286;"	d
+INPUT_DEVICE_ID_FF_MAX	mod_devicetable.h	294;"	d
+INPUT_DEVICE_ID_KEY_MAX	mod_devicetable.h	288;"	d
+INPUT_DEVICE_ID_KEY_MIN_INTERESTING	mod_devicetable.h	287;"	d
+INPUT_DEVICE_ID_LED_MAX	mod_devicetable.h	292;"	d
+INPUT_DEVICE_ID_MATCH_ABSBIT	mod_devicetable.h	305;"	d
+INPUT_DEVICE_ID_MATCH_BUS	mod_devicetable.h	297;"	d
+INPUT_DEVICE_ID_MATCH_EVBIT	mod_devicetable.h	302;"	d
+INPUT_DEVICE_ID_MATCH_FFBIT	mod_devicetable.h	309;"	d
+INPUT_DEVICE_ID_MATCH_KEYBIT	mod_devicetable.h	303;"	d
+INPUT_DEVICE_ID_MATCH_LEDBIT	mod_devicetable.h	307;"	d
+INPUT_DEVICE_ID_MATCH_MSCIT	mod_devicetable.h	306;"	d
+INPUT_DEVICE_ID_MATCH_PRODUCT	mod_devicetable.h	299;"	d
+INPUT_DEVICE_ID_MATCH_RELBIT	mod_devicetable.h	304;"	d
+INPUT_DEVICE_ID_MATCH_SNDBIT	mod_devicetable.h	308;"	d
+INPUT_DEVICE_ID_MATCH_SWBIT	mod_devicetable.h	310;"	d
+INPUT_DEVICE_ID_MATCH_VENDOR	mod_devicetable.h	298;"	d
+INPUT_DEVICE_ID_MATCH_VERSION	mod_devicetable.h	300;"	d
+INPUT_DEVICE_ID_MSC_MAX	mod_devicetable.h	291;"	d
+INPUT_DEVICE_ID_REL_MAX	mod_devicetable.h	289;"	d
+INPUT_DEVICE_ID_SND_MAX	mod_devicetable.h	293;"	d
+INPUT_DEVICE_ID_SW_MAX	mod_devicetable.h	295;"	d
+IRDA_IRQ_MUX_MODE	board-rk29-ddr3sdk.c	520;"	d	file:
+IRDA_IRQ_MUX_NAME	board-rk29-ddr3sdk.c	519;"	d	file:
+IRDA_IRQ_PIN	board-rk29-ddr3sdk.c	518;"	d	file:
+KXTF9_DEVICE_MAP	board-rk29-ddr3sdk.c	1127;"	d	file:
+KXTF9_MAP_X	board-rk29-ddr3sdk.c	1128;"	d	file:
+KXTF9_MAP_Y	board-rk29-ddr3sdk.c	1129;"	d	file:
+KXTF9_NEG_X	board-rk29-ddr3sdk.c	1130;"	d	file:
+KXTF9_NEG_Y	board-rk29-ddr3sdk.c	1131;"	d	file:
+KXTF9_NEG_Z	board-rk29-ddr3sdk.c	1132;"	d	file:
+LCD_CLK_PIN	board-rk29-ddr3sdk.c	194;"	d	file:
+LCD_CS_PIN	board-rk29-ddr3sdk.c	195;"	d	file:
+LCD_DISP_ON_PIN	board-rk29-ddr3sdk.c	2323;"	d	file:
+LCD_PRIO	board-rk29-ddr3sdk.c	3777;"	d	file:
+LCD_TXD_PIN	board-rk29-ddr3sdk.c	193;"	d	file:
+LINUX_MOD_DEVICETABLE_H	mod_devicetable.h	8;"	d
+LINUX_SIZE	board-rk29-ddr3sdk.c	149;"	d	file:
+LI_LION_BAT_NUM	board-rk29-ddr3sdk.c	1241;"	d	file:
+LI_LION_BAT_NUM	board-rk29-ddr3sdk.c	747;"	d	file:
+MEM_CAMIPP_BASE	board-rk29-ddr3sdk.c	144;"	d	file:
+MEM_CAMIPP_SIZE	board-rk29-ddr3sdk.c	119;"	d	file:
+MEM_CAMIPP_SIZE	board-rk29-ddr3sdk.c	121;"	d	file:
+MEM_EBC_BASE	board-rk29-ddr3sdk.c	147;"	d	file:
+MEM_EBC_SIZE	board-rk29-ddr3sdk.c	134;"	d	file:
+MEM_FBIPP_BASE	board-rk29-ddr3sdk.c	146;"	d	file:
+MEM_FBIPP_SIZE	board-rk29-ddr3sdk.c	126;"	d	file:
+MEM_FBIPP_SIZE	board-rk29-ddr3sdk.c	128;"	d	file:
+MEM_FBIPP_SIZE	board-rk29-ddr3sdk.c	131;"	d	file:
+MEM_FB_BASE	board-rk29-ddr3sdk.c	145;"	d	file:
+MEM_FB_SIZE	board-rk29-ddr3sdk.c	123;"	d	file:
+MMA7660_INT_PIN	board-rk29-ddr3sdk.c	1150;"	d	file:
+MMA8452_INT_PIN	board-rk29-ddr3sdk.c	1170;"	d	file:
+PA_HVERSION_ANY_ID	mod_devicetable.h	355;"	d
+PA_HVERSION_REV_ANY_ID	mod_devicetable.h	354;"	d
+PA_HWTYPE_ANY_ID	mod_devicetable.h	353;"	d
+PA_SVERSION_ANY_ID	mod_devicetable.h	356;"	d
+PCI_ANY_ID	mod_devicetable.h	15;"	d
+PCMCIA_DEV_ID_MATCH_ANONYMOUS	mod_devicetable.h	283;"	d
+PCMCIA_DEV_ID_MATCH_CARD_ID	mod_devicetable.h	274;"	d
+PCMCIA_DEV_ID_MATCH_DEVICE_NO	mod_devicetable.h	281;"	d
+PCMCIA_DEV_ID_MATCH_FAKE_CIS	mod_devicetable.h	282;"	d
+PCMCIA_DEV_ID_MATCH_FUNCTION	mod_devicetable.h	276;"	d
+PCMCIA_DEV_ID_MATCH_FUNC_ID	mod_devicetable.h	275;"	d
+PCMCIA_DEV_ID_MATCH_MANF_ID	mod_devicetable.h	273;"	d
+PCMCIA_DEV_ID_MATCH_PROD_ID1	mod_devicetable.h	277;"	d
+PCMCIA_DEV_ID_MATCH_PROD_ID2	mod_devicetable.h	278;"	d
+PCMCIA_DEV_ID_MATCH_PROD_ID3	mod_devicetable.h	279;"	d
+PCMCIA_DEV_ID_MATCH_PROD_ID4	mod_devicetable.h	280;"	d
+PERI_PRIO	board-rk29-ddr3sdk.c	3778;"	d	file:
+PLATFORM_MODULE_PREFIX	mod_devicetable.h	475;"	d
+PLATFORM_NAME_SIZE	mod_devicetable.h	474;"	d
+PMEM_CAM_BASE	board-rk29-ddr3sdk.c	143;"	d	file:
+PMEM_CAM_SIZE	board-rk29-ddr3sdk.c	113;"	d	file:
+PMEM_CAM_SIZE	board-rk29-ddr3sdk.c	115;"	d	file:
+PMEM_GPU_BASE	board-rk29-ddr3sdk.c	137;"	d	file:
+PMEM_GPU_BASE	board-rk29-ddr3sdk.c	139;"	d	file:
+PMEM_GPU_SIZE	board-rk29-ddr3sdk.c	107;"	d	file:
+PMEM_SKYPE_BASE	board-rk29-ddr3sdk.c	148;"	d	file:
+PMEM_SKYPE_SIZE	board-rk29-ddr3sdk.c	110;"	d	file:
+PMEM_UI_BASE	board-rk29-ddr3sdk.c	141;"	d	file:
+PMEM_UI_SIZE	board-rk29-ddr3sdk.c	108;"	d	file:
+PMEM_VPU_BASE	board-rk29-ddr3sdk.c	142;"	d	file:
+PMEM_VPU_SIZE	board-rk29-ddr3sdk.c	109;"	d	file:
+PNP_ID_LEN	mod_devicetable.h	190;"	d
+PNP_MAX_DEVICES	mod_devicetable.h	191;"	d
+PREALLOC_WLAN_BUF_NUM	board-rk29-ddr3sdk.c	152;"	d	file:
+PREALLOC_WLAN_SECTION_HEADER	board-rk29-ddr3sdk.c	153;"	d	file:
+PREALLOC_WLAN_SEC_NUM	board-rk29-ddr3sdk.c	151;"	d	file:
+PWM_EFFECT_VALUE	board-rk29-ddr3sdk.c	2321;"	d	file:
+PWM_GPIO	board-rk29-ddr3sdk.c	2320;"	d	file:
+PWM_ID	board-rk29-ddr3sdk.c	2316;"	d	file:
+PWM_MUX_MODE	board-rk29-ddr3sdk.c	2318;"	d	file:
+PWM_MUX_MODE_GPIO	board-rk29-ddr3sdk.c	2319;"	d	file:
+PWM_MUX_NAME	board-rk29-ddr3sdk.c	2317;"	d	file:
+REGULATOR_PWM_GPIO	board-rk29-ddr3sdk.c	2410;"	d	file:
+REGULATOR_PWM_ID	board-rk29-ddr3sdk.c	2406;"	d	file:
+REGULATOR_PWM_MUX_MODE	board-rk29-ddr3sdk.c	2408;"	d	file:
+REGULATOR_PWM_MUX_MODE_GPIO	board-rk29-ddr3sdk.c	2409;"	d	file:
+REGULATOR_PWM_MUX_NAME	board-rk29-ddr3sdk.c	2407;"	d	file:
+RK29SDK_BT_GPIO_RESET_N	board-rk29-ddr3sdk.c	2849;"	d	file:
+RK29SDK_WIFI_BT_GPIO_POWER_N	board-rk29-ddr3sdk.c	2847;"	d	file:
+RK29SDK_WIFI_GPIO_RESET_N	board-rk29-ddr3sdk.c	2848;"	d	file:
+RK29SDK_WIFI_SDIO_CARD_DETECT_N	board-rk29-ddr3sdk.c	2791;"	d	file:
+ReadReg32	board-rk29-ddr3sdk.c	3780;"	d	file:
+SDIO_ANY_ID	mod_devicetable.h	360;"	d
+SDMMC0_WRITE_PROTECT_PIN	board-rk29-ddr3sdk.c	2451;"	d	file:
+SDMMC1_WRITE_PROTECT_PIN	board-rk29-ddr3sdk.c	2456;"	d	file:
+SDRAM_SIZE	board-rk29-ddr3sdk.c	103;"	d	file:
+SDRAM_SIZE	board-rk29-ddr3sdk.c	105;"	d	file:
+SENSOR_INT_PIN	board-rk29-ddr3sdk.c	1883;"	d	file:
+SERIO_ANY	mod_devicetable.h	207;"	d
+SPI_CHIPSELECT_NUM	board-rk29-ddr3sdk.c	3504;"	d	file:
+SPI_MODULE_PREFIX	mod_devicetable.h	411;"	d
+SPI_NAME_SIZE	mod_devicetable.h	410;"	d
+SSB_ANY_ID	mod_devicetable.h	382;"	d
+SSB_ANY_REV	mod_devicetable.h	383;"	d
+SSB_ANY_VENDOR	mod_devicetable.h	381;"	d
+SSB_DEVICE	mod_devicetable.h	376;"	d
+SSB_DEVTABLE_END	mod_devicetable.h	378;"	d
+TOUCH_INT_PIN	board-rk29-ddr3sdk.c	1055;"	d	file:
+TOUCH_INT_PIN	board-rk29-ddr3sdk.c	1089;"	d	file:
+TOUCH_INT_PIN	board-rk29-ddr3sdk.c	601;"	d	file:
+TOUCH_INT_PIN	board-rk29-ddr3sdk.c	661;"	d	file:
+TOUCH_RESET_PIN	board-rk29-ddr3sdk.c	1054;"	d	file:
+TOUCH_RESET_PIN	board-rk29-ddr3sdk.c	1088;"	d	file:
+TOUCH_RESET_PIN	board-rk29-ddr3sdk.c	600;"	d	file:
+TOUCH_RESET_PIN	board-rk29-ddr3sdk.c	660;"	d	file:
+TOUCH_SCREEN_DISPLAY_PIN	board-rk29-ddr3sdk.c	184;"	d	file:
+TOUCH_SCREEN_DISPLAY_VALUE	board-rk29-ddr3sdk.c	185;"	d	file:
+TOUCH_SCREEN_STANDBY_PIN	board-rk29-ddr3sdk.c	182;"	d	file:
+TOUCH_SCREEN_STANDBY_VALUE	board-rk29-ddr3sdk.c	183;"	d	file:
+USB_DEVICE_ID_MATCH_DEV_CLASS	mod_devicetable.h	127;"	d
+USB_DEVICE_ID_MATCH_DEV_HI	mod_devicetable.h	126;"	d
+USB_DEVICE_ID_MATCH_DEV_LO	mod_devicetable.h	125;"	d
+USB_DEVICE_ID_MATCH_DEV_PROTOCOL	mod_devicetable.h	129;"	d
+USB_DEVICE_ID_MATCH_DEV_SUBCLASS	mod_devicetable.h	128;"	d
+USB_DEVICE_ID_MATCH_INT_CLASS	mod_devicetable.h	130;"	d
+USB_DEVICE_ID_MATCH_INT_PROTOCOL	mod_devicetable.h	132;"	d
+USB_DEVICE_ID_MATCH_INT_SUBCLASS	mod_devicetable.h	131;"	d
+USB_DEVICE_ID_MATCH_PRODUCT	mod_devicetable.h	124;"	d
+USB_DEVICE_ID_MATCH_VENDOR	mod_devicetable.h	123;"	d
+VCODEC_PRIO	board-rk29-ddr3sdk.c	3775;"	d	file:
+VIRTIO_DEV_ANY_ID	mod_devicetable.h	389;"	d
+Version	bus_basic.c	/^static char *Version = "$Revision:1.0 $";$/;"	v	file:
+WLAN_SECTION_SIZE_0	board-rk29-ddr3sdk.c	155;"	d	file:
+WLAN_SECTION_SIZE_1	board-rk29-ddr3sdk.c	156;"	d	file:
+WLAN_SECTION_SIZE_2	board-rk29-ddr3sdk.c	157;"	d	file:
+WLAN_SECTION_SIZE_3	board-rk29-ddr3sdk.c	158;"	d	file:
+WLAN_SKB_BUF_NUM	board-rk29-ddr3sdk.c	160;"	d	file:
+WriteReg32	board-rk29-ddr3sdk.c	3781;"	d	file:
+XPT2046_GPIO_INT	board-rk29-ddr3sdk.c	3591;"	d	file:
+__initdata	board-rk29-ddr3sdk.c	/^static struct platform_device *devices[] __initdata = {$/;"	v	typeref:struct:devices	file:
+absbit	mod_devicetable.h	/^	kernel_ulong_t absbit[INPUT_DEVICE_ID_ABS_MAX \/ BITS_PER_LONG + 1];$/;"	m	struct:input_device_id
+acpi_device_id	mod_devicetable.h	/^struct acpi_device_id {$/;"	s
+act8891	board-rk29-ddr3sdk.c	/^static struct act8891 *act8891;$/;"	v	typeref:struct:act8891	file:
+act8891_data	board-rk29-ddr3sdk.c	/^struct act8891_platform_data act8891_data={$/;"	v	typeref:struct:act8891_platform_data
+act8891_dcdc1_consumers	board-rk29-ddr3sdk.c	/^static struct regulator_consumer_supply act8891_dcdc1_consumers[] = {$/;"	v	typeref:struct:regulator_consumer_supply	file:
+act8891_dcdc1_data	board-rk29-ddr3sdk.c	/^static struct regulator_init_data act8891_dcdc1_data = {$/;"	v	typeref:struct:regulator_init_data	file:
+act8891_dcdc2_consumers	board-rk29-ddr3sdk.c	/^static struct regulator_consumer_supply act8891_dcdc2_consumers[] = {$/;"	v	typeref:struct:regulator_consumer_supply	file:
+act8891_dcdc2_data	board-rk29-ddr3sdk.c	/^static struct regulator_init_data act8891_dcdc2_data = {$/;"	v	typeref:struct:regulator_init_data	file:
+act8891_dcdc3_consumers	board-rk29-ddr3sdk.c	/^static struct regulator_consumer_supply act8891_dcdc3_consumers[] = {$/;"	v	typeref:struct:regulator_consumer_supply	file:
+act8891_dcdc3_data	board-rk29-ddr3sdk.c	/^static struct regulator_init_data act8891_dcdc3_data = {$/;"	v	typeref:struct:regulator_init_data	file:
+act8891_ldo1_consumers	board-rk29-ddr3sdk.c	/^static struct regulator_consumer_supply act8891_ldo1_consumers[] = {$/;"	v	typeref:struct:regulator_consumer_supply	file:
+act8891_ldo1_data	board-rk29-ddr3sdk.c	/^static struct regulator_init_data act8891_ldo1_data = {$/;"	v	typeref:struct:regulator_init_data	file:
+act8891_ldo2_consumers	board-rk29-ddr3sdk.c	/^static struct regulator_consumer_supply act8891_ldo2_consumers[] = {$/;"	v	typeref:struct:regulator_consumer_supply	file:
+act8891_ldo2_data	board-rk29-ddr3sdk.c	/^static struct regulator_init_data act8891_ldo2_data = {$/;"	v	typeref:struct:regulator_init_data	file:
+act8891_ldo3_consumers	board-rk29-ddr3sdk.c	/^static struct regulator_consumer_supply act8891_ldo3_consumers[] = {$/;"	v	typeref:struct:regulator_consumer_supply	file:
+act8891_ldo3_data	board-rk29-ddr3sdk.c	/^static struct regulator_init_data act8891_ldo3_data = {$/;"	v	typeref:struct:regulator_init_data	file:
+act8891_ldo4_consumers	board-rk29-ddr3sdk.c	/^static struct regulator_consumer_supply act8891_ldo4_consumers[] = {$/;"	v	typeref:struct:regulator_consumer_supply	file:
+act8891_ldo4_data	board-rk29-ddr3sdk.c	/^static struct regulator_init_data act8891_ldo4_data = {$/;"	v	typeref:struct:regulator_init_data	file:
+act8891_regulator_subdev_id	board-rk29-ddr3sdk.c	/^struct act8891_regulator_subdev act8891_regulator_subdev_id[] = {$/;"	v	typeref:struct:act8891_regulator_subdev
+act8891_set_init	board-rk29-ddr3sdk.c	/^int act8891_set_init(struct act8891 *act8891)$/;"	f
+act8931_data	board-rk29-ddr3sdk.c	/^struct act8931_platform_data act8931_data={$/;"	v	typeref:struct:act8931_platform_data
+act8931_dcdc1_consumers	board-rk29-ddr3sdk.c	/^static struct regulator_consumer_supply act8931_dcdc1_consumers[] = {$/;"	v	typeref:struct:regulator_consumer_supply	file:
+act8931_dcdc1_data	board-rk29-ddr3sdk.c	/^static struct regulator_init_data act8931_dcdc1_data = {$/;"	v	typeref:struct:regulator_init_data	file:
+act8931_dcdc2_consumers	board-rk29-ddr3sdk.c	/^static struct regulator_consumer_supply act8931_dcdc2_consumers[] = {$/;"	v	typeref:struct:regulator_consumer_supply	file:
+act8931_dcdc2_data	board-rk29-ddr3sdk.c	/^static struct regulator_init_data act8931_dcdc2_data = {$/;"	v	typeref:struct:regulator_init_data	file:
+act8931_dcdc3_consumers	board-rk29-ddr3sdk.c	/^static struct regulator_consumer_supply act8931_dcdc3_consumers[] = {$/;"	v	typeref:struct:regulator_consumer_supply	file:
+act8931_dcdc3_data	board-rk29-ddr3sdk.c	/^static struct regulator_init_data act8931_dcdc3_data = {$/;"	v	typeref:struct:regulator_init_data	file:
+act8931_ldo1_consumers	board-rk29-ddr3sdk.c	/^static struct regulator_consumer_supply act8931_ldo1_consumers[] = {$/;"	v	typeref:struct:regulator_consumer_supply	file:
+act8931_ldo1_data	board-rk29-ddr3sdk.c	/^static struct regulator_init_data act8931_ldo1_data = {$/;"	v	typeref:struct:regulator_init_data	file:
+act8931_ldo2_consumers	board-rk29-ddr3sdk.c	/^static struct regulator_consumer_supply act8931_ldo2_consumers[] = {$/;"	v	typeref:struct:regulator_consumer_supply	file:
+act8931_ldo2_data	board-rk29-ddr3sdk.c	/^static struct regulator_init_data act8931_ldo2_data = {$/;"	v	typeref:struct:regulator_init_data	file:
+act8931_ldo3_consumers	board-rk29-ddr3sdk.c	/^static struct regulator_consumer_supply act8931_ldo3_consumers[] = {$/;"	v	typeref:struct:regulator_consumer_supply	file:
+act8931_ldo3_data	board-rk29-ddr3sdk.c	/^static struct regulator_init_data act8931_ldo3_data = {$/;"	v	typeref:struct:regulator_init_data	file:
+act8931_ldo4_consumers	board-rk29-ddr3sdk.c	/^static struct regulator_consumer_supply act8931_ldo4_consumers[] = {$/;"	v	typeref:struct:regulator_consumer_supply	file:
+act8931_ldo4_data	board-rk29-ddr3sdk.c	/^static struct regulator_init_data act8931_ldo4_data = {$/;"	v	typeref:struct:regulator_init_data	file:
+act8931_regulator_subdev_id	board-rk29-ddr3sdk.c	/^struct act8931_regulator_subdev act8931_regulator_subdev_id[] = {$/;"	v	typeref:struct:act8931_regulator_subdev
+act8931_set_init	board-rk29-ddr3sdk.c	/^int act8931_set_init(struct act8931 *act8931)$/;"	f
+active_low	mybus_driver.h	/^	bool		active_low;$/;"	m	struct:mybus_driver_info
+addr	bus_basic.h	/^	unsigned short addr;$/;"	m	struct:mybus_device
+android_pmem_device	board-rk29-ddr3sdk.c	/^static struct platform_device android_pmem_device = {$/;"	v	typeref:struct:platform_device	file:
+android_pmem_pdata	board-rk29-ddr3sdk.c	/^static struct android_pmem_platform_data android_pmem_pdata = {$/;"	v	typeref:struct:android_pmem_platform_data	file:
+android_pmem_skype_device	board-rk29-ddr3sdk.c	/^static struct platform_device android_pmem_skype_device = {$/;"	v	typeref:struct:platform_device	file:
+android_pmem_skype_pdata	board-rk29-ddr3sdk.c	/^static struct android_pmem_platform_data android_pmem_skype_pdata = {$/;"	v	typeref:struct:android_pmem_platform_data	file:
+anx7150_data	board-rk29-ddr3sdk.c	/^struct hdmi_platform_data anx7150_data = {$/;"	v	typeref:struct:hdmi_platform_data
+ap_device_id	mod_devicetable.h	/^struct ap_device_id {$/;"	s
+bDeviceClass	mod_devicetable.h	/^	__u8		bDeviceClass;$/;"	m	struct:usb_device_id
+bDeviceProtocol	mod_devicetable.h	/^	__u8		bDeviceProtocol;$/;"	m	struct:usb_device_id
+bDeviceSubClass	mod_devicetable.h	/^	__u8		bDeviceSubClass;$/;"	m	struct:usb_device_id
+bInterfaceClass	mod_devicetable.h	/^	__u8		bInterfaceClass;$/;"	m	struct:usb_device_id
+bInterfaceProtocol	mod_devicetable.h	/^	__u8		bInterfaceProtocol;$/;"	m	struct:usb_device_id
+bInterfaceSubClass	mod_devicetable.h	/^	__u8		bInterfaceSubClass;$/;"	m	struct:usb_device_id
+bcdDevice_hi	mod_devicetable.h	/^	__u16		bcdDevice_hi;$/;"	m	struct:usb_device_id
+bcdDevice_lo	mod_devicetable.h	/^	__u16		bcdDevice_lo;$/;"	m	struct:usb_device_id
+board_i2c0_devices	board-rk29-ddr3sdk.c	/^static struct i2c_board_info __initdata board_i2c0_devices[] = {$/;"	v	typeref:struct:__initdata	file:
+board_i2c1_devices	board-rk29-ddr3sdk.c	/^static struct i2c_board_info __initdata board_i2c1_devices[] = {$/;"	v	typeref:struct:__initdata	file:
+board_i2c2_devices	board-rk29-ddr3sdk.c	/^static struct i2c_board_info __initdata board_i2c2_devices[] = {$/;"	v	typeref:struct:__initdata	file:
+board_i2c3_devices	board-rk29-ddr3sdk.c	/^static struct i2c_board_info __initdata board_i2c3_devices[] = {$/;"	v	typeref:struct:__initdata	file:
+board_spi_devices	board-rk29-ddr3sdk.c	/^static struct spi_board_info board_spi_devices[] = {$/;"	v	typeref:struct:spi_board_info	file:
+bq27510_info	board-rk29-ddr3sdk.c	/^struct bq27510_platform_data bq27510_info = {	$/;"	v	typeref:struct:bq27510_platform_data
+bq27510_init_dc_check_pin	board-rk29-ddr3sdk.c	/^static int bq27510_init_dc_check_pin(void){	$/;"	f	file:
+bq27541_info	board-rk29-ddr3sdk.c	/^struct bq27541_platform_data bq27541_info = {	$/;"	v	typeref:struct:bq27541_platform_data
+bq27541_init_dc_check_pin	board-rk29-ddr3sdk.c	/^static int bq27541_init_dc_check_pin(void){	$/;"	f	file:
+bu92747guw_io_deinit	board-rk29-ddr3sdk.c	/^static int bu92747guw_io_deinit(void)$/;"	f	file:
+bu92747guw_io_init	board-rk29-ddr3sdk.c	/^static int bu92747guw_io_init(void)$/;"	f	file:
+bu92747guw_pdata	board-rk29-ddr3sdk.c	/^static struct  bu92747guw_platform_data bu92747guw_pdata = {$/;"	v	typeref:struct:bu92747guw_platform_data	file:
+bu92747guw_power_ctl	board-rk29-ddr3sdk.c	/^static int bu92747guw_power_ctl(int enable)$/;"	f	file:
+bus	base.h	/^	struct bus_type *bus;$/;"	m	struct:bus_type_private	typeref:struct:bus_type_private::bus_type
+bus	mod_devicetable.h	/^	__u16 bus;$/;"	m	struct:hid_device_id
+bus_device_id	mod_devicetable.h	/^struct bus_device_id {$/;"	s
+bus_notifier	base.h	/^	struct blocking_notifier_head bus_notifier;$/;"	m	struct:bus_type_private	typeref:struct:bus_type_private::blocking_notifier_head
+bus_type_private	base.h	/^struct bus_type_private {$/;"	s
+bustype	mod_devicetable.h	/^	__u16 bustype;$/;"	m	struct:input_device_id
+callback	mod_devicetable.h	/^	int (*callback)(const struct dmi_system_id *);$/;"	m	struct:dmi_system_id
+callback	mod_devicetable.h	/^	kernel_ulong_t callback;$/;"	m	struct:dmi_system_id
+card_id	mod_devicetable.h	/^	__u16 		card_id;$/;"	m	struct:pcmcia_device_id
+ccw_device_id	mod_devicetable.h	/^struct ccw_device_id {$/;"	s
+cdev	mybus_driver.c	/^static struct cdev cdev;$/;"	v	typeref:struct:cdev	file:
+char_reg_setup_cdev	mybus_driver.c	/^static void char_reg_setup_cdev (void)$/;"	f	file:
+cir_iomux_init	board-rk29-ddr3sdk.c	/^static int cir_iomux_init(void)$/;"	f	file:
+cisfile	mod_devicetable.h	/^	char *		cisfile;$/;"	m	struct:pcmcia_device_id
+cisfile	mod_devicetable.h	/^	kernel_ulong_t	cisfile;$/;"	m	struct:pcmcia_device_id
+class_devices	base.h	/^	struct klist class_devices;$/;"	m	struct:class_private	typeref:struct:class_private::klist
+class_dirs	base.h	/^	struct kset class_dirs;$/;"	m	struct:class_private	typeref:struct:class_private::kset
+class_interfaces	base.h	/^	struct list_head class_interfaces;$/;"	m	struct:class_private	typeref:struct:class_private::list_head
+class_mask	mod_devicetable.h	/^	__u32 class, class_mask;	\/* (class,subclass,prog-if) triplet *\/$/;"	m	struct:pci_device_id	typeref:class:pci_device_id::
+class_mutex	base.h	/^	struct mutex class_mutex;$/;"	m	struct:class_private	typeref:struct:class_private::mutex
+class_private	base.h	/^struct class_private {$/;"	s
+class_subsys	base.h	/^	struct kset class_subsys;$/;"	m	struct:class_private	typeref:struct:class_private::kset
+compat	mod_devicetable.h	/^	char compat[32];$/;"	m	struct:vio_device_id
+compatible	mod_devicetable.h	/^	char	compatible[128];$/;"	m	struct:of_device_id
+coreid	mod_devicetable.h	/^	__u16	coreid;$/;"	m	struct:ssb_device_id
+cs42l52_info	board-rk29-ddr3sdk.c	/^struct cs42l52_platform_data cs42l52_info = {$/;"	v	typeref:struct:cs42l52_platform_data
+cs42l52_init_platform_hw	board-rk29-ddr3sdk.c	/^int cs42l52_init_platform_hw()$/;"	f
+css_device_id	mod_devicetable.h	/^struct css_device_id {$/;"	s
+cu_model	mod_devicetable.h	/^	__u8	cu_model;	\/* control unit model    *\/$/;"	m	struct:ccw_device_id
+cu_type	mod_devicetable.h	/^	__u16	cu_type;	\/* control unit type     *\/$/;"	m	struct:ccw_device_id
+data	mod_devicetable.h	/^	kernel_ulong_t data;$/;"	m	struct:of_device_id
+data	mod_devicetable.h	/^	void	*data;$/;"	m	struct:of_device_id
+default_i2c0_data	board-rk29-ddr3sdk.c	/^struct i2c_gpio_platform_data default_i2c0_data = {$/;"	v	typeref:struct:i2c_gpio_platform_data
+default_i2c0_data	board-rk29-ddr3sdk.c	/^struct rk29_i2c_platform_data default_i2c0_data = {$/;"	v	typeref:struct:rk29_i2c_platform_data
+default_i2c1_data	board-rk29-ddr3sdk.c	/^struct i2c_gpio_platform_data default_i2c1_data = {$/;"	v	typeref:struct:i2c_gpio_platform_data
+default_i2c1_data	board-rk29-ddr3sdk.c	/^struct rk29_i2c_platform_data default_i2c1_data = {$/;"	v	typeref:struct:rk29_i2c_platform_data
+default_i2c2_data	board-rk29-ddr3sdk.c	/^struct i2c_gpio_platform_data default_i2c2_data = {$/;"	v	typeref:struct:i2c_gpio_platform_data
+default_i2c2_data	board-rk29-ddr3sdk.c	/^struct rk29_i2c_platform_data default_i2c2_data = {$/;"	v	typeref:struct:rk29_i2c_platform_data
+default_i2c3_data	board-rk29-ddr3sdk.c	/^struct i2c_gpio_platform_data default_i2c3_data = {$/;"	v	typeref:struct:i2c_gpio_platform_data
+default_i2c3_data	board-rk29-ddr3sdk.c	/^struct rk29_i2c_platform_data default_i2c3_data = {$/;"	v	typeref:struct:rk29_i2c_platform_data
+default_sdmmc0_data	board-rk29-ddr3sdk.c	/^struct rk29_sdmmc_platform_data default_sdmmc0_data = {$/;"	v	typeref:struct:rk29_sdmmc_platform_data
+default_sdmmc1_data	board-rk29-ddr3sdk.c	/^struct rk29_sdmmc_platform_data default_sdmmc1_data = {$/;"	v	typeref:struct:rk29_sdmmc_platform_data
+dev	bus_basic.h	/^	struct device dev;$/;"	m	struct:mybus_device	typeref:struct:mybus_device::device
+dev	mybus_driver.c	/^static dev_t dev = 2;$/;"	v	file:
+dev_file	mybus_driver.h	/^	char *dev_file;$/;"	m	struct:mybus_driver_info
+dev_model	mod_devicetable.h	/^	__u8	dev_model;	\/* device model          *\/$/;"	m	struct:ccw_device_id
+dev_type	mod_devicetable.h	/^	__u16	dev_type;	\/* device type           *\/$/;"	m	struct:ccw_device_id
+dev_type	mod_devicetable.h	/^	__u8 dev_type;		\/* device type *\/$/;"	m	struct:ap_device_id
+device	base.h	/^	struct device *device;$/;"	m	struct:device_private	typeref:struct:device_private::device
+device	mod_devicetable.h	/^	__u16	device;			\/* Device ID or SDIO_ANY_ID *\/$/;"	m	struct:sdio_device_id
+device	mod_devicetable.h	/^	__u32 device;$/;"	m	struct:virtio_device_id
+device	mod_devicetable.h	/^	__u32 vendor, device;		\/* Vendor and device ID or PCI_ANY_ID*\/$/;"	m	struct:pci_device_id
+device_no	mod_devicetable.h	/^	__u8  		device_no;$/;"	m	struct:pcmcia_device_id
+device_private	base.h	/^struct device_private {$/;"	s
+devices_kset	base.h	/^	struct kset *devices_kset;$/;"	m	struct:bus_type_private	typeref:struct:bus_type_private::kset
+devs	mod_devicetable.h	/^	} devs[PNP_MAX_DEVICES];$/;"	m	struct:pnp_card_device_id	typeref:struct:pnp_card_device_id::__anon1
+devtmpfs_init	base.h	/^static inline int devtmpfs_init(void) { return 0; }$/;"	f
+dmi_device_id	mod_devicetable.h	469;"	d
+dmi_field	mod_devicetable.h	/^enum dmi_field {$/;"	g
+dmi_strmatch	mod_devicetable.h	/^struct dmi_strmatch {$/;"	s
+dmi_system_id	mod_devicetable.h	/^struct dmi_system_id {$/;"	s
+driver	base.h	/^	struct device_driver *driver;$/;"	m	struct:driver_private	typeref:struct:driver_private::device_driver
+driver	bus_basic.h	/^	struct device_driver driver;$/;"	m	struct:mybus_driver	typeref:struct:mybus_driver::device_driver
+driver_data	base.h	/^	void *driver_data;$/;"	m	struct:device_private
+driver_data	mod_devicetable.h	/^	kernel_ulong_t driver_data	\/* Data private to the driver *\/$/;"	m	struct:bus_device_id
+driver_data	mod_devicetable.h	/^	kernel_ulong_t driver_data	\/* Data private to the driver *\/$/;"	m	struct:i2c_device_id
+driver_data	mod_devicetable.h	/^	kernel_ulong_t driver_data	\/* Data private to the driver *\/$/;"	m	struct:sdio_device_id
+driver_data	mod_devicetable.h	/^	kernel_ulong_t driver_data	\/* Data private to the driver *\/$/;"	m	struct:spi_device_id
+driver_data	mod_devicetable.h	/^	kernel_ulong_t driver_data$/;"	m	struct:dmi_system_id
+driver_data	mod_devicetable.h	/^	kernel_ulong_t driver_data$/;"	m	struct:hid_device_id
+driver_data	mod_devicetable.h	/^	kernel_ulong_t driver_data$/;"	m	struct:ieee1394_device_id
+driver_data	mod_devicetable.h	/^	kernel_ulong_t driver_data$/;"	m	struct:platform_device_id
+driver_data	mod_devicetable.h	/^	kernel_ulong_t driver_data;	\/* Data private to the driver *\/$/;"	m	struct:pci_device_id
+driver_data	mod_devicetable.h	/^	kernel_ulong_t driver_data;$/;"	m	struct:acpi_device_id
+driver_data	mod_devicetable.h	/^	kernel_ulong_t driver_data;$/;"	m	struct:css_device_id
+driver_data	mod_devicetable.h	/^	kernel_ulong_t driver_data;$/;"	m	struct:eisa_device_id
+driver_data	mod_devicetable.h	/^	kernel_ulong_t driver_data;$/;"	m	struct:pnp_card_device_id
+driver_data	mod_devicetable.h	/^	kernel_ulong_t driver_data;$/;"	m	struct:pnp_device_id
+driver_data	mod_devicetable.h	/^	void *driver_data;$/;"	m	struct:dmi_system_id
+driver_info	mod_devicetable.h	/^	kernel_ulong_t	driver_info;$/;"	m	struct:pcmcia_device_id
+driver_info	mod_devicetable.h	/^	kernel_ulong_t	driver_info;$/;"	m	struct:usb_device_id
+driver_info	mod_devicetable.h	/^	kernel_ulong_t driver_info;$/;"	m	struct:ap_device_id
+driver_info	mod_devicetable.h	/^	kernel_ulong_t driver_info;$/;"	m	struct:ccw_device_id
+driver_info	mod_devicetable.h	/^	kernel_ulong_t driver_info;$/;"	m	struct:input_device_id
+driver_init	init.c	/^void __init driver_init(void)$/;"	f
+driver_match_device	base.h	/^static inline int driver_match_device(struct device_driver *drv,$/;"	f
+driver_private	base.h	/^struct driver_private {$/;"	s
+drivers_autoprobe	base.h	/^	unsigned int drivers_autoprobe:1;$/;"	m	struct:bus_type_private
+drivers_kset	base.h	/^	struct kset *drivers_kset;$/;"	m	struct:bus_type_private	typeref:struct:bus_type_private::kset
+ebc_data	board-rk29-ddr3sdk.c	/^static struct ebc_platform_data  ebc_data={$/;"	v	typeref:struct:ebc_platform_data	file:
+ebc_io_init	board-rk29-ddr3sdk.c	/^static  int ebc_io_init(void)$/;"	f	file:
+ebc_power_off	board-rk29-ddr3sdk.c	/^static int ebc_power_off(void)$/;"	f	file:
+ebc_power_on	board-rk29-ddr3sdk.c	/^static  int ebc_power_on(void)$/;"	f	file:
+ebc_vcom_power_off	board-rk29-ddr3sdk.c	/^static  int  ebc_vcom_power_off(void)$/;"	f	file:
+ebc_vcom_power_on	board-rk29-ddr3sdk.c	/^static  int  ebc_vcom_power_on(void)$/;"	f	file:
+eeti_egalax_info	board-rk29-ddr3sdk.c	/^static struct eeti_egalax_platform_data eeti_egalax_info = {$/;"	v	typeref:struct:eeti_egalax_platform_data	file:
+eisa_device_id	mod_devicetable.h	/^struct eisa_device_id {$/;"	s
+evbit	mod_devicetable.h	/^	kernel_ulong_t evbit[INPUT_DEVICE_ID_EV_MAX \/ BITS_PER_LONG + 1];$/;"	m	struct:input_device_id
+extra	mod_devicetable.h	/^	__u8 extra;$/;"	m	struct:serio_device_id
+ffbit	mod_devicetable.h	/^	kernel_ulong_t ffbit[INPUT_DEVICE_ID_FF_MAX \/ BITS_PER_LONG + 1];$/;"	m	struct:input_device_id
+flage	bus_basic.h	/^	unsigned short flage;$/;"	m	struct:mybus_device
+flags	mod_devicetable.h	/^	kernel_ulong_t flags;$/;"	m	struct:input_device_id
+freq_table	board-rk29-ddr3sdk.c	/^static struct cpufreq_frequency_table freq_table[] = {$/;"	v	typeref:struct:cpufreq_frequency_table	file:
+ft5406_exit_platform_hw	board-rk29-ddr3sdk.c	/^void ft5406_exit_platform_hw(void)$/;"	f
+ft5406_info	board-rk29-ddr3sdk.c	/^struct ft5406_platform_data ft5406_info = {$/;"	v	typeref:struct:ft5406_platform_data
+ft5406_init_platform_hw	board-rk29-ddr3sdk.c	/^int ft5406_init_platform_hw(void)$/;"	f
+ft5406_platform_sleep	board-rk29-ddr3sdk.c	/^int ft5406_platform_sleep(void)$/;"	f
+ft5406_platform_wakeup	board-rk29-ddr3sdk.c	/^int ft5406_platform_wakeup(void)$/;"	f
+func_id	mod_devicetable.h	/^	__u8  		func_id;$/;"	m	struct:pcmcia_device_id
+function	mod_devicetable.h	/^	__u8  		function;$/;"	m	struct:pcmcia_device_id
+goodix_info	board-rk29-ddr3sdk.c	/^struct goodix_platform_data goodix_info = {$/;"	v	typeref:struct:goodix_platform_data
+gsensor_data	board-rk29-ddr3sdk.c	/^struct rk29_gsensor_platform_data gsensor_data = {$/;"	v	typeref:struct:rk29_gsensor_platform_data
+gt819_exit_platform_hw	board-rk29-ddr3sdk.c	/^void gt819_exit_platform_hw(void)$/;"	f
+gt819_init_platform_hw	board-rk29-ddr3sdk.c	/^int gt819_init_platform_hw(void)$/;"	f
+gt819_platform_sleep	board-rk29-ddr3sdk.c	/^int gt819_platform_sleep(void)$/;"	f
+gt819_platform_wakeup	board-rk29-ddr3sdk.c	/^int gt819_platform_wakeup(void)$/;"	f
+hid_device_id	mod_devicetable.h	/^struct hid_device_id {$/;"	s
+hp_switch_pdata	board-rk29-ddr3sdk.c	/^static struct gpio_switch_platform_data hp_switch_pdata = {$/;"	v	typeref:struct:gpio_switch_platform_data	file:
+hversion	mod_devicetable.h	/^	__u16	hversion;	\/* 12 bits *\/$/;"	m	struct:parisc_device_id
+hversion_rev	mod_devicetable.h	/^	__u8	hversion_rev;	\/* 4 bits *\/$/;"	m	struct:parisc_device_id
+hw_type	mod_devicetable.h	/^	__u8	hw_type;	\/* 5 bits used *\/$/;"	m	struct:parisc_device_id
+hypervisor_init	base.h	/^static inline int hypervisor_init(void) { return 0; }$/;"	f
+i2c_device_id	mod_devicetable.h	/^struct i2c_device_id {$/;"	s
+id	mod_devicetable.h	/^		__u8 id[PNP_ID_LEN];$/;"	m	struct:pnp_card_device_id::__anon1
+id	mod_devicetable.h	/^	__u8 id;$/;"	m	struct:serio_device_id
+id	mod_devicetable.h	/^	__u8 id[ACPI_ID_LEN];$/;"	m	struct:acpi_device_id
+id	mod_devicetable.h	/^	__u8 id[PNP_ID_LEN];$/;"	m	struct:pnp_card_device_id
+id	mod_devicetable.h	/^	__u8 id[PNP_ID_LEN];$/;"	m	struct:pnp_device_id
+idProduct	mod_devicetable.h	/^	__u16		idProduct;$/;"	m	struct:usb_device_id
+idVendor	mod_devicetable.h	/^	__u16		idVendor;$/;"	m	struct:usb_device_id
+id_table	bus_basic.h	/^	struct bus_device_id *id_table;$/;"	m	struct:mybus_driver	typeref:struct:mybus_driver::bus_device_id
+ident	mod_devicetable.h	/^	const char *ident;$/;"	m	struct:dmi_system_id
+ident	mod_devicetable.h	/^	kernel_ulong_t ident;$/;"	m	struct:dmi_system_id
+ieee1394_device_id	mod_devicetable.h	/^struct ieee1394_device_id {$/;"	s
+input-core-objs	Makefile	/^input-core-objs := input.o input-compat.o ff-core.o$/;"	m
+input_dev	mybus_driver.h	/^	struct input_dev *input_dev;$/;"	m	struct:mybus_driver_data	typeref:struct:mybus_driver_data::input_dev
+input_device_id	mod_devicetable.h	/^struct input_device_id {$/;"	s
+irda_device	board-rk29-ddr3sdk.c	/^static struct platform_device irda_device = {$/;"	v	typeref:struct:platform_device	file:
+irda_iomux_deinit	board-rk29-ddr3sdk.c	/^int irda_iomux_deinit(void)$/;"	f
+irda_iomux_init	board-rk29-ddr3sdk.c	/^int irda_iomux_init(void)$/;"	f
+irq	bus_basic.h	/^	int irq;$/;"	m	struct:mybus_device
+irq_enable	mybus_driver.h	/^	int irq_enable;$/;"	m	struct:mybus_driver_data
+kernel_ulong_t	mod_devicetable.h	/^typedef unsigned long kernel_ulong_t;$/;"	t
+key_gpio_pullupdown_disable	board-rk29-ddr3sdk.c	/^static void key_gpio_pullupdown_disable(void)$/;"	f	file:
+key_gpio_pullupdown_enable	board-rk29-ddr3sdk.c	/^static void key_gpio_pullupdown_enable(void)$/;"	f	file:
+keybit	mod_devicetable.h	/^	kernel_ulong_t keybit[INPUT_DEVICE_ID_KEY_MAX \/ BITS_PER_LONG + 1];$/;"	m	struct:input_device_id
+klist_children	base.h	/^	struct klist klist_children;$/;"	m	struct:device_private	typeref:struct:device_private::klist
+klist_devices	base.h	/^	struct klist klist_devices;$/;"	m	struct:bus_type_private	typeref:struct:bus_type_private::klist
+klist_devices	base.h	/^	struct klist klist_devices;$/;"	m	struct:driver_private	typeref:struct:driver_private::klist
+klist_drivers	base.h	/^	struct klist klist_drivers;$/;"	m	struct:bus_type_private	typeref:struct:bus_type_private::klist
+knode_bus	base.h	/^	struct klist_node knode_bus;$/;"	m	struct:device_private	typeref:struct:device_private::klist_node
+knode_bus	base.h	/^	struct klist_node knode_bus;$/;"	m	struct:driver_private	typeref:struct:driver_private::klist_node
+knode_driver	base.h	/^	struct klist_node knode_driver;$/;"	m	struct:device_private	typeref:struct:device_private::klist_node
+knode_parent	base.h	/^	struct klist_node knode_parent;$/;"	m	struct:device_private	typeref:struct:device_private::klist_node
+kobj	base.h	/^	struct kobject kobj;$/;"	m	struct:driver_private	typeref:struct:driver_private::kobject
+kxtf9_pdata	board-rk29-ddr3sdk.c	/^struct kxtf9_platform_data kxtf9_pdata = {$/;"	v	typeref:struct:kxtf9_platform_data
+ledbit	mod_devicetable.h	/^	kernel_ulong_t ledbit[INPUT_DEVICE_ID_LED_MAX \/ BITS_PER_LONG + 1];$/;"	m	struct:input_device_id
+machine_rk29_board_init	board-rk29-ddr3sdk.c	/^static void __init machine_rk29_board_init(void)$/;"	f	file:
+machine_rk29_fixup	board-rk29-ddr3sdk.c	/^static void __init machine_rk29_fixup(struct machine_desc *desc, struct tag *tags,$/;"	f	file:
+machine_rk29_init_irq	board-rk29-ddr3sdk.c	/^static void __init machine_rk29_init_irq(void)$/;"	f	file:
+machine_rk29_mapio	board-rk29-ddr3sdk.c	/^static void __init machine_rk29_mapio(void)$/;"	f	file:
+manf_id	mod_devicetable.h	/^	__u16		manf_id;$/;"	m	struct:pcmcia_device_id
+match_flags	mod_devicetable.h	/^	__u16		match_flags;$/;"	m	struct:pcmcia_device_id
+match_flags	mod_devicetable.h	/^	__u16		match_flags;$/;"	m	struct:usb_device_id
+match_flags	mod_devicetable.h	/^	__u16	match_flags;	\/* which fields to match against *\/$/;"	m	struct:ccw_device_id
+match_flags	mod_devicetable.h	/^	__u16 match_flags;	\/* which fields to match against *\/$/;"	m	struct:ap_device_id
+match_flags	mod_devicetable.h	/^	__u32 match_flags;$/;"	m	struct:ieee1394_device_id
+match_flags	mod_devicetable.h	/^	__u8 match_flags;$/;"	m	struct:css_device_id
+matches	mod_devicetable.h	/^	struct dmi_strmatch matches[4];$/;"	m	struct:dmi_system_id	typeref:struct:dmi_system_id::dmi_strmatch
+mem_ptr	board-rk29-ddr3sdk.c	/^        void *mem_ptr;$/;"	m	struct:wifi_mem_prealloc	file:
+mkobj	base.h	/^	struct module_kobject *mkobj;$/;"	m	struct:driver_private	typeref:struct:driver_private::module_kobject
+mma7660_info	board-rk29-ddr3sdk.c	/^static struct mma7660_platform_data mma7660_info = {$/;"	v	typeref:struct:mma7660_platform_data	file:
+mma7660_init_platform_hw	board-rk29-ddr3sdk.c	/^static int mma7660_init_platform_hw(void)$/;"	f	file:
+mma8452_info	board-rk29-ddr3sdk.c	/^static struct mma8452_platform_data mma8452_info = {$/;"	v	typeref:struct:mma8452_platform_data	file:
+mma8452_init_platform_hw	board-rk29-ddr3sdk.c	/^static int mma8452_init_platform_hw(void)$/;"	f	file:
+model_id	mod_devicetable.h	/^	__u32 model_id;$/;"	m	struct:ieee1394_device_id
+module_add_driver	base.h	/^static inline void module_add_driver(struct module *mod,$/;"	f
+module_remove_driver	base.h	/^static inline void module_remove_driver(struct device_driver *drv) { }$/;"	f
+mpu3050_data	board-rk29-ddr3sdk.c	/^static struct mpu3050_platform_data mpu3050_data = {$/;"	v	typeref:struct:mpu3050_platform_data	file:
+mscbit	mod_devicetable.h	/^	kernel_ulong_t mscbit[INPUT_DEVICE_ID_MSC_MAX \/ BITS_PER_LONG + 1];$/;"	m	struct:input_device_id
+my_bus_exit	bus_basic.c	/^static void my_bus_exit(void)$/;"	f	file:
+my_bus_init	bus_basic.c	/^int __init my_bus_init(void)$/;"	f
+my_bus_type	bus_basic.c	/^static struct mybus my_bus_type = {$/;"	v	typeref:struct:mybus	file:
+my_class	mybus_driver.c	/^struct class *my_class;$/;"	v	typeref:struct:class
+my_driver_exit	driver.c	/^module_exit(my_driver_exit);$/;"	v
+my_driver_exit	driver.c	/^static void my_driver_exit(void)$/;"	f	file:
+my_driver_exit	mybus_driver.c	/^module_exit(my_driver_exit);$/;"	v
+my_driver_exit	mybus_driver.c	/^static void my_driver_exit(void)$/;"	f	file:
+my_driver_init	driver.c	/^module_init(my_driver_init);$/;"	v
+my_driver_init	driver.c	/^static int __init my_driver_init(void)$/;"	f	file:
+my_driver_init	mybus_driver.c	/^module_init(my_driver_init);$/;"	v
+my_driver_init	mybus_driver.c	/^static int __init my_driver_init(void)$/;"	f	file:
+my_probe	driver.c	/^static int my_probe(struct device *dev)$/;"	f	file:
+my_probe	mybus_driver.c	/^static int my_probe(struct mybus_device *pdev)$/;"	f	file:
+my_resume	driver.c	/^static int my_resume(struct device *dev)$/;"	f	file:
+my_resume	mybus_driver.c	/^static int my_resume(struct mybus_device *dev)$/;"	f	file:
+my_suspend	driver.c	/^static int my_suspend(struct device *dev)$/;"	f	file:
+my_suspend	mybus_driver.c	/^static int my_suspend(struct mybus_device *dev)$/;"	f	file:
+mybus	bus_basic.h	/^struct mybus {$/;"	s
+mybus_add_device	bus_basic.c	/^int mybus_add_device(struct mybus_device **device, unsigned len)$/;"	f
+mybus_char_device	mybus_driver.c	/^struct miscdevice mybus_char_device = {$/;"	v	typeref:struct:miscdevice
+mybus_class	bus_basic.c	/^EXPORT_SYMBOL(mybus_class);$/;"	v
+mybus_dev	board-rk29-ddr3sdk.c	/^static struct mybus_device *mybus_dev[] = {$/;"	v	typeref:struct:mybus_device	file:
+mybus_dev	bus_basic.c	/^static struct mybus_device mybus_dev = {$/;"	v	typeref:struct:mybus_device	file:
+mybus_dev1	board-rk29-ddr3sdk.c	/^static struct mybus_device mybus_dev1 = {$/;"	v	typeref:struct:mybus_device	file:
+mybus_dev1_ioctl	mybus_driver.c	/^static int mybus_dev1_ioctl(struct inode *inode, struct file *file, unsigned int cmd, unsigned long arg)$/;"	f	file:
+mybus_dev1_open	mybus_driver.c	/^static int mybus_dev1_open(struct inode *inode, struct file *file)$/;"	f	file:
+mybus_dev1_ops	mybus_driver.c	/^struct file_operations mybus_dev1_ops = {$/;"	v	typeref:struct:file_operations
+mybus_dev1_release	mybus_driver.c	/^static int mybus_dev1_release(struct inode *inode, struct file *file)$/;"	f	file:
+mybus_dev2	board-rk29-ddr3sdk.c	/^static struct mybus_device mybus_dev2 = {$/;"	v	typeref:struct:mybus_device	file:
+mybus_dev3	board-rk29-ddr3sdk.c	/^static struct mybus_device mybus_dev3 = {$/;"	v	typeref:struct:mybus_device	file:
+mybus_dev_release	bus_basic.c	/^void mybus_dev_release(struct device *dev)$/;"	f
+mybus_device	bus_basic.h	/^struct mybus_device {$/;"	s
+mybus_driver	bus_basic.h	/^struct mybus_driver {$/;"	s
+mybus_driver_data	mybus_driver.h	/^struct mybus_driver_data {$/;"	s
+mybus_driver_info	mybus_driver.h	/^struct mybus_driver_info {$/;"	s
+mybus_drv	driver.c	/^static struct mybus_driver mybus_drv= {$/;"	v	typeref:struct:mybus_driver	file:
+mybus_drv	mybus_driver.c	/^static struct mybus_driver mybus_drv= {$/;"	v	typeref:struct:mybus_driver	file:
+mybus_get_clientdata	bus_basic.h	/^static inline void *mybus_get_clientdata(struct mybus_device *dev)$/;"	f
+mybus_legacy_resume	bus_basic.c	/^static int mybus_legacy_resume(struct device *dev) {$/;"	f	file:
+mybus_legacy_suspend	bus_basic.c	/^static int mybus_legacy_suspend(struct device *dev) {$/;"	f	file:
+mybus_major	bus_basic.c	/^static int mybus_major = 58;$/;"	v	file:
+mybus_major	mybus_driver.c	/^static int mybus_major = 58;$/;"	v	file:
+mybus_match	bus_basic.c	/^static int mybus_match(struct device *dev, struct device_driver *driver)$/;"	f	file:
+mybus_minor	bus_basic.c	/^static int mybus_minor = 0;$/;"	v	file:
+mybus_minor	mybus_driver.c	/^static int mybus_minor = 0;$/;"	v	file:
+mybus_pm_ops	bus_basic.c	/^static struct dev_pm_ops mybus_pm_ops = {$/;"	v	typeref:struct:dev_pm_ops	file:
+mybus_probe	bus_basic.c	/^static int mybus_probe(struct device *dev) {$/;"	f	file:
+mybus_register_device	bus_basic.c	/^int mybus_register_device(struct mybus_device *pdev)$/;"	f
+mybus_register_driver	bus_basic.c	/^int mybus_register_driver(struct mybus_driver *pdrv)$/;"	f
+mybus_resume	bus_basic.c	/^static int mybus_resume(struct device *dev) {$/;"	f	file:
+mybus_set_clientdata	bus_basic.h	/^static inline void mybus_set_clientdata(struct mybus_device *pdev, void *data)$/;"	f
+mybus_suspend	bus_basic.c	/^static int mybus_suspend(struct device *dev) {$/;"	f	file:
+mybus_type	bus_basic.h	/^	struct bus_type mybus_type;$/;"	m	struct:mybus	typeref:struct:mybus::bus_type
+mybus_unregister_device	bus_basic.c	/^int mybus_unregister_device(struct mybus_device *pdev)$/;"	f
+mybus_unregister_driver	bus_basic.c	/^int mybus_unregister_driver(struct mybus_driver *pdrv)$/;"	f
+nPowerOnCount	board-rk29-ddr3sdk.c	/^static int nPowerOnCount = 0;$/;"	v	file:
+name	bus_basic.h	/^	char *name;$/;"	m	struct:mybus_device
+name	mod_devicetable.h	/^	char	name[32];$/;"	m	struct:of_device_id
+name	mod_devicetable.h	/^	char name[I2C_NAME_SIZE];$/;"	m	struct:bus_device_id
+name	mod_devicetable.h	/^	char name[I2C_NAME_SIZE];$/;"	m	struct:i2c_device_id
+name	mod_devicetable.h	/^	char name[PLATFORM_NAME_SIZE];$/;"	m	struct:platform_device_id
+name	mod_devicetable.h	/^	char name[SPI_NAME_SIZE];$/;"	m	struct:spi_device_id
+name	mybus_driver.h	/^	char *name;$/;"	m	struct:mybus_driver_info
+number_of_devices	mybus_driver.c	/^static int number_of_devices = 1;$/;"	v	file:
+of_device_id	mod_devicetable.h	/^struct of_device_id$/;"	s
+p1003_info	board-rk29-ddr3sdk.c	/^struct p1003_platform_data p1003_info = {$/;"	v	typeref:struct:p1003_platform_data
+p1003_init_platform_hw	board-rk29-ddr3sdk.c	/^int p1003_init_platform_hw(void)$/;"	f
+pad1	mod_devicetable.h	/^	__u16 pad1;$/;"	m	struct:hid_device_id
+pad1	mod_devicetable.h	/^	__u8 pad1;$/;"	m	struct:ap_device_id
+pad2	mod_devicetable.h	/^	__u16 pad2;$/;"	m	struct:css_device_id
+pad2	mod_devicetable.h	/^	__u32 pad2;$/;"	m	struct:ap_device_id
+pad3	mod_devicetable.h	/^	__u32 pad3;$/;"	m	struct:css_device_id
+palmtc_keymap_data	board-rk29-ddr3sdk.c	/^const struct matrix_keymap_data palmtc_keymap_data = {$/;"	v	typeref:struct:matrix_keymap_data
+palmtc_keypad_col_gpios	board-rk29-ddr3sdk.c	/^const static unsigned int palmtc_keypad_col_gpios[] = {$/;"	v	file:
+palmtc_keypad_platform_data	board-rk29-ddr3sdk.c	/^static struct matrix_keypad_platform_data palmtc_keypad_platform_data = {$/;"	v	typeref:struct:matrix_keypad_platform_data	file:
+palmtc_keypad_row_gpios	board-rk29-ddr3sdk.c	/^const static unsigned int palmtc_keypad_row_gpios[] = {$/;"	v	file:
+palmtc_matrix_keys	board-rk29-ddr3sdk.c	/^static const uint32_t palmtc_matrix_keys[] = {$/;"	v	file:
+parisc_device_id	mod_devicetable.h	/^struct parisc_device_id {$/;"	s
+pci_device_id	mod_devicetable.h	/^struct pci_device_id {$/;"	s
+pcmcia_device_id	mod_devicetable.h	/^struct pcmcia_device_id {$/;"	s
+platform_device_id	mod_devicetable.h	/^struct platform_device_id {$/;"	s
+pnp_card_device_id	mod_devicetable.h	/^struct pnp_card_device_id {$/;"	s
+pnp_device_id	mod_devicetable.h	/^struct pnp_device_id {$/;"	s
+poweroff	bus_basic.c	/^static int poweroff(struct device *dev) {$/;"	f	file:
+probe	bus_basic.h	/^	int (*probe)(struct mybus_device *dev);$/;"	m	struct:mybus_driver
+prod_id	mod_devicetable.h	/^	const char *	prod_id[4];$/;"	m	struct:pcmcia_device_id
+prod_id	mod_devicetable.h	/^	kernel_ulong_t	prod_id[4]$/;"	m	struct:pcmcia_device_id
+prod_id_hash	mod_devicetable.h	/^	__u32 		prod_id_hash[4]$/;"	m	struct:pcmcia_device_id
+product	mod_devicetable.h	/^	__u16 product;$/;"	m	struct:input_device_id
+product	mod_devicetable.h	/^	__u32 product;$/;"	m	struct:hid_device_id
+proto	mod_devicetable.h	/^	__u8 proto;$/;"	m	struct:serio_device_id
+pwm_consumers	board-rk29-ddr3sdk.c	/^static struct regulator_consumer_supply pwm_consumers[] = {$/;"	v	typeref:struct:regulator_consumer_supply	file:
+relbit	mod_devicetable.h	/^	kernel_ulong_t relbit[INPUT_DEVICE_ID_REL_MAX \/ BITS_PER_LONG + 1];$/;"	m	struct:input_device_id
+remove	bus_basic.h	/^	int (*remove)(struct mybus_device *dev);$/;"	m	struct:mybus_driver
+resources_gpu	board-rk29-ddr3sdk.c	/^static struct resource resources_gpu[] = {$/;"	v	typeref:struct:resource	file:
+resume	bus_basic.h	/^	int (*resume)(struct mybus_device *dev);$/;"	m	struct:mybus_driver
+revision	mod_devicetable.h	/^	__u8	revision;$/;"	m	struct:ssb_device_id
+rk29_adc_battery_platdata	board-rk29-ddr3sdk.c	/^static struct rk29_adc_battery_platform_data rk29_adc_battery_platdata = {$/;"	v	typeref:struct:rk29_adc_battery_platform_data	file:
+rk29_backlight_io_deinit	board-rk29-ddr3sdk.c	/^static int rk29_backlight_io_deinit(void)$/;"	f	file:
+rk29_backlight_io_init	board-rk29-ddr3sdk.c	/^static int rk29_backlight_io_init(void)$/;"	f	file:
+rk29_backlight_pwm_resume	board-rk29-ddr3sdk.c	/^static int rk29_backlight_pwm_resume(void)$/;"	f	file:
+rk29_backlight_pwm_suspend	board-rk29-ddr3sdk.c	/^static int rk29_backlight_pwm_suspend(void)$/;"	f	file:
+rk29_bl_info	board-rk29-ddr3sdk.c	/^struct rk29_bl_info rk29_bl_info = {$/;"	v	typeref:struct:rk29_bl_info
+rk29_board_iomux_init	board-rk29-ddr3sdk.c	/^static void __init rk29_board_iomux_init(void)$/;"	f	file:
+rk29_device_adc_battery	board-rk29-ddr3sdk.c	/^static struct platform_device rk29_device_adc_battery = {$/;"	v	typeref:struct:platform_device	file:
+rk29_device_dma_cpy	board-rk29-ddr3sdk.c	/^struct platform_device rk29_device_dma_cpy = {$/;"	v	typeref:struct:platform_device
+rk29_device_ebc	board-rk29-ddr3sdk.c	/^struct platform_device rk29_device_ebc = {$/;"	v	typeref:struct:platform_device
+rk29_device_fb	board-rk29-ddr3sdk.c	/^struct platform_device rk29_device_fb = {$/;"	v	typeref:struct:platform_device
+rk29_device_gpio_leds	board-rk29-ddr3sdk.c	/^struct platform_device rk29_device_gpio_leds = {$/;"	v	typeref:struct:platform_device
+rk29_device_gpu	board-rk29-ddr3sdk.c	/^static struct platform_device rk29_device_gpu = {$/;"	v	typeref:struct:platform_device	file:
+rk29_device_keys	board-rk29-ddr3sdk.c	/^static struct platform_device rk29_device_keys = {$/;"	v	typeref:struct:platform_device	file:
+rk29_device_newton	board-rk29-ddr3sdk.c	/^struct platform_device rk29_device_newton = {$/;"	v	typeref:struct:platform_device
+rk29_device_pwm_leds	board-rk29-ddr3sdk.c	/^static struct platform_device rk29_device_pwm_leds = {$/;"	v	typeref:struct:platform_device	file:
+rk29_device_pwm_regulator	board-rk29-ddr3sdk.c	/^static struct platform_device rk29_device_pwm_regulator = {$/;"	v	typeref:struct:platform_device	file:
+rk29_ebc_resource	board-rk29-ddr3sdk.c	/^static struct resource rk29_ebc_resource[] = {$/;"	v	typeref:struct:resource	file:
+rk29_fb_info	board-rk29-ddr3sdk.c	/^static struct rk29fb_info rk29_fb_info = {$/;"	v	typeref:struct:rk29fb_info	file:
+rk29_fb_io_disable	board-rk29-ddr3sdk.c	/^int rk29_fb_io_disable(void)$/;"	f
+rk29_fb_io_enable	board-rk29-ddr3sdk.c	/^int rk29_fb_io_enable(void)$/;"	f
+rk29_fb_io_init	board-rk29-ddr3sdk.c	/^static int rk29_fb_io_init(struct rk29_fb_setting_info *fb_setting)$/;"	f	file:
+rk29_fb_resource	board-rk29-ddr3sdk.c	/^static struct resource rk29_fb_resource[] = {$/;"	v	typeref:struct:resource	file:
+rk29_gic_init_irq	board-rk29-ddr3sdk.c	/^static void __init rk29_gic_init_irq(void)$/;"	f	file:
+rk29_hp_switch	board-rk29-ddr3sdk.c	/^struct platform_device rk29_hp_switch = {$/;"	v	typeref:struct:platform_device
+rk29_i2c0_io_init	board-rk29-ddr3sdk.c	/^static int rk29_i2c0_io_init(void)$/;"	f	file:
+rk29_i2c1_io_init	board-rk29-ddr3sdk.c	/^static int rk29_i2c1_io_init(void)$/;"	f	file:
+rk29_i2c2_io_init	board-rk29-ddr3sdk.c	/^static int rk29_i2c2_io_init(void)$/;"	f	file:
+rk29_i2c3_io_init	board-rk29-ddr3sdk.c	/^static int rk29_i2c3_io_init(void)$/;"	f	file:
+rk29_irda_info	board-rk29-ddr3sdk.c	/^static struct irda_info rk29_irda_info = {$/;"	v	typeref:struct:irda_info	file:
+rk29_lcd_info	board-rk29-ddr3sdk.c	/^static struct rk29lcd_info rk29_lcd_info = {$/;"	v	typeref:struct:rk29lcd_info	file:
+rk29_lcd_io_deinit	board-rk29-ddr3sdk.c	/^static int rk29_lcd_io_deinit(void)$/;"	f	file:
+rk29_lcd_io_init	board-rk29-ddr3sdk.c	/^static int rk29_lcd_io_init(void)$/;"	f	file:
+rk29_leds	board-rk29-ddr3sdk.c	/^struct gpio_led rk29_leds[] = {$/;"	v	typeref:struct:gpio_led
+rk29_leds_pdata	board-rk29-ddr3sdk.c	/^struct gpio_led_platform_data rk29_leds_pdata = {$/;"	v	typeref:struct:gpio_led_platform_data
+rk29_matrix_keys	board-rk29-ddr3sdk.c	/^static struct platform_device rk29_matrix_keys = {$/;"	v	typeref:struct:platform_device	file:
+rk29_nand_data	board-rk29-ddr3sdk.c	/^struct rk29_nand_platform_data rk29_nand_data = {$/;"	v	typeref:struct:rk29_nand_platform_data
+rk29_nand_io_init	board-rk29-ddr3sdk.c	/^static int rk29_nand_io_init(void)$/;"	f	file:
+rk29_newton_info	board-rk29-ddr3sdk.c	/^struct rk29_newton_data rk29_newton_info = {	$/;"	v	typeref:struct:rk29_newton_data
+rk29_pwm_leds	board-rk29-ddr3sdk.c	/^static struct led_newton_pwm rk29_pwm_leds[] = {$/;"	v	typeref:struct:led_newton_pwm	file:
+rk29_pwm_leds_pdata	board-rk29-ddr3sdk.c	/^static struct led_newton_pwm_platform_data rk29_pwm_leds_pdata = {$/;"	v	typeref:struct:led_newton_pwm_platform_data	file:
+rk29_pwm_regulator_data	board-rk29-ddr3sdk.c	/^static struct regulator_init_data rk29_pwm_regulator_data = {$/;"	v	typeref:struct:regulator_init_data	file:
+rk29_regulator_pwm_platform_data	board-rk29-ddr3sdk.c	/^static struct pwm_platform_data rk29_regulator_pwm_platform_data = {$/;"	v	typeref:struct:pwm_platform_data	file:
+rk29_rmii_io_deinit	board-rk29-ddr3sdk.c	/^static int rk29_rmii_io_deinit(void)$/;"	f	file:
+rk29_rmii_io_init	board-rk29-ddr3sdk.c	/^static int rk29_rmii_io_init(void)$/;"	f	file:
+rk29_rmii_power_control	board-rk29-ddr3sdk.c	/^static int rk29_rmii_power_control(int enable)$/;"	f	file:
+rk29_sdmmc0_cfg_gpio	board-rk29-ddr3sdk.c	/^static int rk29_sdmmc0_cfg_gpio(void)$/;"	f	file:
+rk29_sdmmc1_cfg_gpio	board-rk29-ddr3sdk.c	/^static int rk29_sdmmc1_cfg_gpio(void)$/;"	f	file:
+rk29_sdmmc_gpio_open	board-rk29-ddr3sdk.c	/^static void rk29_sdmmc_gpio_open(int device_id, int on)$/;"	f	file:
+rk29_sdmmc_set_iomux	board-rk29-ddr3sdk.c	/^static void rk29_sdmmc_set_iomux(int device_id, unsigned int bus_width)$/;"	f	file:
+rk29_sdmmc_set_iomux_mmc0	board-rk29-ddr3sdk.c	/^static void rk29_sdmmc_set_iomux_mmc0(unsigned int bus_width)$/;"	f	file:
+rk29_sdmmc_set_iomux_mmc1	board-rk29-ddr3sdk.c	/^static void rk29_sdmmc_set_iomux_mmc1(unsigned int bus_width)$/;"	f	file:
+rk29_sdmmc_set_iomux_mmc2	board-rk29-ddr3sdk.c	/^static void rk29_sdmmc_set_iomux_mmc2(unsigned int bus_width)$/;"	f	file:
+rk29_setgpio_resume_board	board-rk29-ddr3sdk.c	/^void rk29_setgpio_resume_board(void)$/;"	f
+rk29_setgpio_suspend_board	board-rk29-ddr3sdk.c	/^void rk29_setgpio_suspend_board(void)$/;"	f
+rk29_v4l2_output_devce	board-rk29-ddr3sdk.c	/^static struct platform_device rk29_v4l2_output_devce = {$/;"	v	typeref:struct:platform_device	file:
+rk29_vmac_pdata	board-rk29-ddr3sdk.c	/^struct rk29_vmac_platform_data rk29_vmac_pdata = {$/;"	v	typeref:struct:rk29_vmac_platform_data
+rk29_vmac_register_set	board-rk29-ddr3sdk.c	/^static int rk29_vmac_register_set(void)$/;"	f	file:
+rk29_vpu_mem_device	board-rk29-ddr3sdk.c	/^static struct platform_device rk29_vpu_mem_device = {$/;"	v	typeref:struct:platform_device	file:
+rk29sdk_bt_power_state	board-rk29-ddr3sdk.c	/^int rk29sdk_bt_power_state = 0;$/;"	v
+rk29sdk_init_wifi_mem	board-rk29-ddr3sdk.c	/^int __init rk29sdk_init_wifi_mem(void)$/;"	f
+rk29sdk_mem_prealloc	board-rk29-ddr3sdk.c	/^static void *rk29sdk_mem_prealloc(int section, unsigned long size)$/;"	f	file:
+rk29sdk_rfkill	board-rk29-ddr3sdk.c	/^static struct platform_device rk29sdk_rfkill = {$/;"	v	typeref:struct:platform_device	file:
+rk29sdk_wifi_bt_gpio_control_init	board-rk29-ddr3sdk.c	/^static int rk29sdk_wifi_bt_gpio_control_init(void)$/;"	f	file:
+rk29sdk_wifi_cd	board-rk29-ddr3sdk.c	/^static int rk29sdk_wifi_cd = 0;   \/* wifi virtual 'card detect' status *\/$/;"	v	file:
+rk29sdk_wifi_control	board-rk29-ddr3sdk.c	/^static struct wifi_platform_data rk29sdk_wifi_control = {$/;"	v	typeref:struct:wifi_platform_data	file:
+rk29sdk_wifi_device	board-rk29-ddr3sdk.c	/^static struct platform_device rk29sdk_wifi_device = {$/;"	v	typeref:struct:platform_device	file:
+rk29sdk_wifi_power	board-rk29-ddr3sdk.c	/^static int rk29sdk_wifi_power(int on)$/;"	f	file:
+rk29sdk_wifi_power_state	board-rk29-ddr3sdk.c	/^int rk29sdk_wifi_power_state = 0;$/;"	v
+rk29sdk_wifi_reset	board-rk29-ddr3sdk.c	/^static int rk29sdk_wifi_reset(int on)$/;"	f	file:
+rk29sdk_wifi_reset_state	board-rk29-ddr3sdk.c	/^static int rk29sdk_wifi_reset_state;$/;"	v	file:
+rk29sdk_wifi_set_carddetect	board-rk29-ddr3sdk.c	/^EXPORT_SYMBOL(rk29sdk_wifi_set_carddetect);$/;"	v
+rk29sdk_wifi_set_carddetect	board-rk29-ddr3sdk.c	/^int rk29sdk_wifi_set_carddetect(int val)$/;"	f
+rk29sdk_wifi_status	board-rk29-ddr3sdk.c	/^static int rk29sdk_wifi_status(struct device *dev)$/;"	f	file:
+rk29sdk_wifi_status_register	board-rk29-ddr3sdk.c	/^static int rk29sdk_wifi_status_register(void (*callback)(int card_present, void *dev_id), void *dev_id)$/;"	f	file:
+rk29xx_spi0_cs_gpios	board-rk29-ddr3sdk.c	/^static struct spi_cs_gpio rk29xx_spi0_cs_gpios[SPI_CHIPSELECT_NUM] = {$/;"	v	typeref:struct:spi_cs_gpio	file:
+rk29xx_spi0_platdata	board-rk29-ddr3sdk.c	/^struct rk29xx_spi_platform_data rk29xx_spi0_platdata = {$/;"	v	typeref:struct:rk29xx_spi_platform_data
+rk29xx_spi1_cs_gpios	board-rk29-ddr3sdk.c	/^static struct spi_cs_gpio rk29xx_spi1_cs_gpios[SPI_CHIPSELECT_NUM] = {$/;"	v	typeref:struct:spi_cs_gpio	file:
+rk29xx_spi1_platdata	board-rk29-ddr3sdk.c	/^struct rk29xx_spi_platform_data rk29xx_spi1_platdata = {$/;"	v	typeref:struct:rk29xx_spi_platform_data
+sdio_device_id	mod_devicetable.h	/^struct sdio_device_id {$/;"	s
+sensor_flash_usr_cb	board-rk29-ddr3sdk.c	/^static int sensor_flash_usr_cb (struct rk29camera_gpio_res *res,int on)$/;"	f	file:
+sensor_init_platform_hw	board-rk29-ddr3sdk.c	/^static int sensor_init_platform_hw(void) {$/;"	f	file:
+sensor_ioctl_cb	board-rk29-ddr3sdk.c	/^static struct rk29camera_platform_ioctl_cb  sensor_ioctl_cb = {$/;"	v	typeref:struct:rk29camera_platform_ioctl_cb	file:
+sensor_power_usr_cb	board-rk29-ddr3sdk.c	/^static int sensor_power_usr_cb (struct rk29camera_gpio_res *res,int on)$/;"	f	file:
+sensor_powerdown_usr_cb	board-rk29-ddr3sdk.c	/^static int sensor_powerdown_usr_cb (struct rk29camera_gpio_res *res,int on)$/;"	f	file:
+sensor_reset_usr_cb	board-rk29-ddr3sdk.c	/^static int sensor_reset_usr_cb (struct rk29camera_gpio_res *res,int on)$/;"	f	file:
+serio_device_id	mod_devicetable.h	/^struct serio_device_id {$/;"	s
+show_bus_version	bus_basic.c	/^static int show_bus_version(struct bus_type *bus, char *buf)$/;"	f	file:
+sig	mod_devicetable.h	/^	char          sig[EISA_SIG_LEN];$/;"	m	struct:eisa_device_id
+size	board-rk29-ddr3sdk.c	/^        unsigned long size;$/;"	m	struct:wifi_mem_prealloc	file:
+slot	mod_devicetable.h	/^	unsigned char slot;$/;"	m	struct:dmi_strmatch
+sndbit	mod_devicetable.h	/^	kernel_ulong_t sndbit[INPUT_DEVICE_ID_SND_MAX \/ BITS_PER_LONG + 1];$/;"	m	struct:input_device_id
+specifier_id	mod_devicetable.h	/^	__u32 specifier_id;$/;"	m	struct:ieee1394_device_id
+spi_device_id	mod_devicetable.h	/^struct spi_device_id {$/;"	s
+spi_io_deinit	board-rk29-ddr3sdk.c	/^static int spi_io_deinit(struct spi_cs_gpio *cs_gpios, int cs_num)$/;"	f	file:
+spi_io_fix_leakage_bug	board-rk29-ddr3sdk.c	/^static int spi_io_fix_leakage_bug(void)$/;"	f	file:
+spi_io_init	board-rk29-ddr3sdk.c	/^static int spi_io_init(struct spi_cs_gpio *cs_gpios, int cs_num)$/;"	f	file:
+spi_io_resume_leakage_bug	board-rk29-ddr3sdk.c	/^static int spi_io_resume_leakage_bug(void)$/;"	f	file:
+ssb_device_id	mod_devicetable.h	/^struct ssb_device_id {$/;"	s
+statu	mybus_driver.h	/^	int statu;$/;"	m	struct:mybus_driver_data
+store_bus_version	bus_basic.c	/^static int store_bus_version(struct bus_type *bus, const char *buf, size_t count)$/;"	f	file:
+subdevice	mod_devicetable.h	/^	__u32 subvendor, subdevice;	\/* Subsystem ID's or PCI_ANY_ID *\/$/;"	m	struct:pci_device_id
+substr	mod_devicetable.h	/^	char substr[79];$/;"	m	struct:dmi_strmatch
+subsys	base.h	/^	struct kset subsys;$/;"	m	struct:bus_type_private	typeref:struct:bus_type_private::kset
+subvendor	mod_devicetable.h	/^	__u32 subvendor, subdevice;	\/* Subsystem ID's or PCI_ANY_ID *\/$/;"	m	struct:pci_device_id
+suspend	bus_basic.h	/^	int (*suspend)(struct mybus_device *dev, pm_message_t mesg);$/;"	m	struct:mybus_driver
+sversion	mod_devicetable.h	/^	__u32	sversion;	\/* 20 bits *\/$/;"	m	struct:parisc_device_id
+swbit	mod_devicetable.h	/^	kernel_ulong_t swbit[INPUT_DEVICE_ID_SW_MAX \/ BITS_PER_LONG + 1];$/;"	m	struct:input_device_id
+switch_hp_gpio_init	board-rk29-ddr3sdk.c	/^static void __init switch_hp_gpio_init(void)$/;"	f	file:
+to_class	base.h	63;"	d
+to_device_private_bus	base.h	92;"	d
+to_device_private_driver	base.h	90;"	d
+to_device_private_parent	base.h	88;"	d
+to_driver	base.h	37;"	d
+type	mod_devicetable.h	/^	__u8 type; \/* subchannel type *\/$/;"	m	struct:css_device_id
+type	mod_devicetable.h	/^	__u8 type;$/;"	m	struct:serio_device_id
+type	mod_devicetable.h	/^	char	type[32];$/;"	m	struct:of_device_id
+type	mod_devicetable.h	/^	char type[32];$/;"	m	struct:vio_device_id
+usb_device_id	mod_devicetable.h	/^struct usb_device_id {$/;"	s
+vendor	mod_devicetable.h	/^	__u16	vendor;			\/* Vendor or SDIO_ANY_ID *\/$/;"	m	struct:sdio_device_id
+vendor	mod_devicetable.h	/^	__u16	vendor;$/;"	m	struct:ssb_device_id
+vendor	mod_devicetable.h	/^	__u16 vendor;$/;"	m	struct:input_device_id
+vendor	mod_devicetable.h	/^	__u32 vendor, device;		\/* Vendor and device ID or PCI_ANY_ID*\/$/;"	m	struct:pci_device_id
+vendor	mod_devicetable.h	/^	__u32 vendor;$/;"	m	struct:hid_device_id
+vendor	mod_devicetable.h	/^	__u32 vendor;$/;"	m	struct:virtio_device_id
+vendor_id	mod_devicetable.h	/^	__u32 vendor_id;$/;"	m	struct:ieee1394_device_id
+version	mod_devicetable.h	/^	__u16 version;$/;"	m	struct:input_device_id
+version	mod_devicetable.h	/^	__u32 version;$/;"	m	struct:ieee1394_device_id
+vio_device_id	mod_devicetable.h	/^struct vio_device_id {$/;"	s
+virtio_device_id	mod_devicetable.h	/^struct virtio_device_id {$/;"	s
+vpu_mem_pdata	board-rk29-ddr3sdk.c	/^static struct vpu_mem_platform_data vpu_mem_pdata = {$/;"	v	typeref:struct:vpu_mem_platform_data	file:
+wakeup	mybus_driver.h	/^	bool		wakeup;$/;"	m	struct:mybus_driver_info
+wifi_mem_array	board-rk29-ddr3sdk.c	/^static struct wifi_mem_prealloc wifi_mem_array[PREALLOC_WLAN_SEC_NUM] = {$/;"	v	typeref:struct:wifi_mem_prealloc	file:
+wifi_mem_prealloc	board-rk29-ddr3sdk.c	/^struct wifi_mem_prealloc {$/;"	s	file:
+wifi_status_cb	board-rk29-ddr3sdk.c	/^static void (*wifi_status_cb)(int card_present, void *dev_id);$/;"	v	file:
+wifi_status_cb_devid	board-rk29-ddr3sdk.c	/^static void *wifi_status_cb_devid;$/;"	v	file:
+wlan_static_skb	board-rk29-ddr3sdk.c	/^static struct sk_buff *wlan_static_skb[WLAN_SKB_BUF_NUM];$/;"	v	typeref:struct:sk_buff	file:
+xpt2046_info	board-rk29-ddr3sdk.c	/^static struct xpt2046_platform_data xpt2046_info = {$/;"	v	typeref:struct:xpt2046_platform_data	file:
