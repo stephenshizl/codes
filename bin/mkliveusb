@@ -1,0 +1,74 @@
+#!/bin/bash
+########################################################################
+# File Name: mkliveusb.sh
+# Author: chengdong
+# mail: zchengdongdong@gmail.com
+# Created Time: Wed 23 Sep 2015 10:37:55 AM CST
+########################################################################
+
+set -e
+
+# Enter driver letter and iso
+sudo echo -n "Enter the drive letter (example /dev/sdb) : "
+
+read letter; echo ;ls -lah $letter; echo 
+
+if [ $letter == "/dev/sda" ]; then
+	echo "/dev/sda error!"
+	exit 0
+fi
+
+sudo echo -n "Enter iso path : "
+read isopath
+if [ ${isopath##*.} != "iso" ]; then
+	echo "iso path error!"
+	exit 0
+fi
+echo ;ls -lah $isopath; echo 
+
+# format partition
+sudo echo -n "Delete $letter Repartition [y/n]: "
+read format
+
+if [ "$format" == "Y" ] || [ "$format" == "y" ] || [ "$format" == "" ]; then
+sudo fdisk $letter << EOF
+	p
+	d
+	n
+	p
+	``
+	``
+	``
+	p
+	t
+	6
+	a
+	1
+	p
+	w
+EOF
+sudo mkdosfs -F 16 ${letter}1
+fi
+
+# write mbr
+sudo dd if=/usr/share/syslinux/mbr.bin of=$letter
+
+#mount iso
+sudo mkdir -p /mnt/cdrom
+sudo mount -o loop,ro -t iso9660 $isopath /mnt/cdrom
+#mount /dev
+sudo mkdir -p /mnt/usb
+sudo mount ${letter}1 /mnt/usb
+sudo cp -r /mnt/cdrom/* /mnt/usb
+sudo sync
+sudo mv /mnt/usb/isolinux/* /mnt/usb
+sudo mv /mnt/usb/isolinux.cfg /mnt/usb/syslinux.cfg
+sudo rm -rf /mnt/usb/isolinux*
+sudo mv /mnt/usb/memtest86 /mnt/usb/memtest
+sudo sync
+sudo umount /mnt/cdrom
+sudo sed -i -e "s:cdroot:cdroot slowusb:" -e "s:kernel memtest86:kernel memtest:" /mnt/usb/syslinux.cfg
+sync
+sudo umount /mnt/usb
+sudo syslinux ${letter}1
+echo "success !"
