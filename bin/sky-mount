@@ -1,0 +1,34 @@
+#!/bin/bash
+
+i=0
+max=20
+ip=172.20.116.142
+
+sudo insmod /home/june/Dropbox/tools/awusb.ko
+
+while true
+do
+	ping $ip -c 1 
+	if [ $? -eq 0 ] || [ $((++i)) -ge $max ] ; then
+		break;
+	fi
+	sleep 1
+done
+
+if [ $i -eq $max ] ; then
+	exit 0
+fi
+
+flags_rw="username=chengdongdong,password=abc.123,rw,file_mode=0644,dir_mode=0755,uid=1000,gid=1000"
+flags_ro="username=chengdongdong,password=abc.123,ro,file_mode=0644,dir_mode=0755,uid=1000,gid=1000"
+
+#rw
+sudo mount -t cifs //172.20.116.142/chengdongdong /home/june/skyserver/  -o ${flags_rw}
+
+#ro
+sudo mount -t cifs //172.20.116.142/zhangtiangui /home/june/share/zhangtiangui/ -o ${flags_ro}
+sudo mount -t cifs //172.20.116.142/zhoushaoqing /home/june/share/zhoushaoqing/ -o ${flags_ro}
+sudo mount -t cifs //172.20.116.142/wangwenjiang /home/june/share/wangwenjiang/ -o ${flags_ro}
+sudo mount -t cifs //172.20.116.142/skyworthauto /home/june/share/skyworthauto/ -o ${flags_ro}
+sudo mount -t cifs //172.20.116.142/liyong /home/june/share/liyong/ -o ${flags_ro}
+sudo mount -t cifs //172.20.116.142/autocommon /home/june/share/autocommon/ -o ${flags_ro}
