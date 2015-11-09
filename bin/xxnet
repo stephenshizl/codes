@@ -1,0 +1,14 @@
+########################################################################
+# File Name: meizu.sh
+# Author: chengdong
+# mail: zchengdongdong@gmail.com
+# Created Time: Wed 30 Apr 2014 03:48:20 PM CST
+########################################################################
+#!/bin/bash
+user=$1
+
+if [ -z "$1" ] ; then
+	user=`users`
+fi
+
+. /home/$user/Dropbox/gentoo/fqtool/XX-Net/start.sh
