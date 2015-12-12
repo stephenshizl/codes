@@ -1,8 +1,8 @@
 #!/bin/bash
 
 i=0
-max=20
-ip=172.20.116.142
+max=5
+ip=172.20.116.108
 
 sudo insmod /home/june/Dropbox/tools/awusb.ko
 
@@ -19,16 +19,26 @@ if [ $i -eq $max ] ; then
 	exit 0
 fi
 
-flags_rw="username=chengdongdong,password=abc.123,rw,file_mode=0644,dir_mode=0755,uid=1000,gid=1000"
-flags_ro="username=chengdongdong,password=abc.123,ro,file_mode=0644,dir_mode=0755,uid=1000,gid=1000"
+if [ "$1" == "umount" ] ; then
+	sudo umount /home/june/newsev/
+	sudo umount /home/june/share/zhangtiangui/
+	sudo umount /home/june/share/zhoushaoqing/
+	sudo umount /home/june/share/skyworthauto/
+	sudo umount /home/june/share/liyong/
+	exit 0
+fi
 
-#rw
-sudo mount -t cifs //172.20.116.142/chengdongdong /home/june/skyserver/  -o ${flags_rw}
+SKY_IP="172.20.116.108"
+SKY_USER="sme01249"
+SKY_PASSWD="sme.01249"
+SKY_MOUNT_RW="username=${SKY_USER},password=${SKY_PASSWD},rw,file_mode=0644,dir_mode=0755,uid=1000,gid=1000"
+SKY_MOUNT_RO="username=${SKY_USER},password=${SKY_PASSWD},ro,file_mode=0644,dir_mode=0755,uid=1000,gid=1000"
 
-#ro
-sudo mount -t cifs //172.20.116.142/zhangtiangui /home/june/share/zhangtiangui/ -o ${flags_ro}
-sudo mount -t cifs //172.20.116.142/zhoushaoqing /home/june/share/zhoushaoqing/ -o ${flags_ro}
-sudo mount -t cifs //172.20.116.142/wangwenjiang /home/june/share/wangwenjiang/ -o ${flags_ro}
-sudo mount -t cifs //172.20.116.142/skyworthauto /home/june/share/skyworthauto/ -o ${flags_ro}
-sudo mount -t cifs //172.20.116.142/liyong /home/june/share/liyong/ -o ${flags_ro}
-sudo mount -t cifs //172.20.116.142/autocommon /home/june/share/autocommon/ -o ${flags_ro}
+#mount  rw
+sudo mount -t cifs //$SKY_IP/$SKY_USER /home/june/newsev/ -o $SKY_MOUNT_RW
+#mount  ro
+sudo mount -t cifs //$SKY_IP/sme01230 /home/june/share/liyong/ -o $SKY_MOUNT_RO
+sudo mount -t cifs //$SKY_IP/sme00389 /home/june/share/zhangtiangui/ -o $SKY_MOUNT_RO
+sudo mount -t cifs //$SKY_IP/sme01234 /home/june/share/zhoushaoqing/ -o $SKY_MOUNT_RO
+sudo mount -t cifs //$SKY_IP/skyworthauto /home/june/share/skyworthauto/ -o $SKY_MOUNT_RO
+
