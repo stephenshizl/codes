@@ -1,14 +1,29 @@
 #!/bin/bash
+########################################################################
+# File Name: /tmp/aa.sh
+# Author: chengdong
+# mail: zchengdongdong@gmail.com
+# Created Time: Sat 12 Dec 2015 09:58:42 PM CST
+########################################################################
 
 i=0
 max=5
-ip=172.20.116.108
+linux_home=june
+sky_name=sme01249
+sky_passwd=sme.01249
+sky_server_ip=172.20.116.108
+server_me=sme01249
+server_me_to_locale=server
+sky_server_users="sme01249 sme00389 sme01234 sme01230 skyworthauto"
 
-sudo insmod /home/june/Dropbox/tools/awusb.ko
+MOUNT_OPTION_USER="username=${sky_name},password=${sky_passwd}"
+MOUNT_OPTION_MODE="file_mode=0644,dir_mode=0755"
+MOUNT_OPTION_GUID="uid=1000,gid=1000"
+
 
 while true
 do
-	ping $ip -c 1 
+	ping $sky_server_ip -c 1 > /dev/null 2>&1
 	if [ $? -eq 0 ] || [ $((++i)) -ge $max ] ; then
 		break;
 	fi
@@ -16,29 +31,29 @@ do
 done
 
 if [ $i -eq $max ] ; then
+	echo Server ip $sky_server_ip Error !!!
 	exit 0
 fi
 
-if [ "$1" == "umount" ] ; then
-	sudo umount /home/june/newsev/
-	sudo umount /home/june/share/zhangtiangui/
-	sudo umount /home/june/share/zhoushaoqing/
-	sudo umount /home/june/share/skyworthauto/
-	sudo umount /home/june/share/liyong/
-	exit 0
-fi
+for u in $sky_server_users ; do
 
-SKY_IP="172.20.116.108"
-SKY_USER="sme01249"
-SKY_PASSWD="sme.01249"
-SKY_MOUNT_RW="username=${SKY_USER},password=${SKY_PASSWD},rw,file_mode=0644,dir_mode=0755,uid=1000,gid=1000"
-SKY_MOUNT_RO="username=${SKY_USER},password=${SKY_PASSWD},ro,file_mode=0644,dir_mode=0755,uid=1000,gid=1000"
+	MOUNT_OPTION_WR=ro
+	MOUNT_TO_LOCAL=/home/$linux_home/share/$u
 
-#mount  rw
-sudo mount -t cifs //$SKY_IP/$SKY_USER /home/june/newsev/ -o $SKY_MOUNT_RW
-#mount  ro
-sudo mount -t cifs //$SKY_IP/sme01230 /home/june/share/liyong/ -o $SKY_MOUNT_RO
-sudo mount -t cifs //$SKY_IP/sme00389 /home/june/share/zhangtiangui/ -o $SKY_MOUNT_RO
-sudo mount -t cifs //$SKY_IP/sme01234 /home/june/share/zhoushaoqing/ -o $SKY_MOUNT_RO
-sudo mount -t cifs //$SKY_IP/skyworthauto /home/june/share/skyworthauto/ -o $SKY_MOUNT_RO
+	if [ "$u" == "$server_me" ] ; then
+		MOUNT_OPTION_WR=rw
+		MOUNT_TO_LOCAL=/home/$linux_home/$server_me_to_locale
+	fi
 
+	if [ "$1" == "umount" ] || [ "$1" == "u" ]; then
+		mount | grep "$MOUNT_TO_LOCAL" > /dev/null
+		[ $? -eq 0 ] && sudo umount $MOUNT_TO_LOCAL
+	else
+		[ -d $MOUNT_TO_LOCAL ] || mkdir -p $MOUNT_TO_LOCAL
+		MOUNT_OPTION="$MOUNT_OPTION_USER,$MOUNT_OPTION_WR,$MOUNT_OPTION_MODE,$MOUNT_OPTION_GUID"
+
+		mount | grep "$MOUNT_TO_LOCAL" > /dev/null
+		[ $? -eq 0 ] && continue
+		sudo mount -t cifs //$sky_server_ip/$u $MOUNT_TO_LOCAL -o $MOUNT_OPTION
+	fi
+done
