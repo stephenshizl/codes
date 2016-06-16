@@ -1,4 +1,4 @@
 #!/bin/bash
 
 #sshpass -p 'abc.123' ssh chengdongdong@172.20.116.238
-sshpass -p 'sme.01249' ssh sme01249@172.20.116.108
+sshpass -p 'sme.01249' ssh sme01249@192.168.17.7

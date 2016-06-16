@@ -1,0 +1,91 @@
+#!/bin/bash
+########################################################################
+# File Name: sky-svn.sh
+# Author: chengdong
+# mail: zchengdongdong@gmail.com
+# Created Time: Fri 18 Dec 2015 05:59:36 PM CST
+########################################################################
+SVN_DIR=
+GIT_FLAGS=
+
+PROJUCE_DIR=`pwd -P` 
+SVN_NS5500="/home/june/SVN/NS5500/soft/srcs"
+SVN_NS10100="/home/june/SVN/ns10100/sw/srcs"
+ARGS="$*"
+
+for option in $ARGS
+do
+	case $1 in
+	-p)
+		SVN_DIR=$2
+		shift 2;
+		continue;
+		;;
+	ns10100|NS10100|10100|10)
+		SVN_DIR=$SVN_NS10100
+		;;
+	ns5500|NS5500|5500|50)
+		SVN_DIR=$SVN_NS5500
+		;;
+	esac
+	shift
+done
+
+if [ -z $SVN_DIR ] || [ ! -d $SVN_DIR ]; then
+	echo "NS10100|NS5500 Not Found !"
+	exit
+fi
+
+if [ ! -d $SVN_DIR/lichee ] || [ ! -d $SVN_DIR/android ]; then
+	echo "SVN Directory Error !"
+	exit
+else
+	pushd $SVN_DIR > /dev/null 2>&1
+	svn update
+	if [ $? -ne 0 ]; then
+		echo "SVN update Error !"
+		exit
+	fi
+	popd > /dev/null 2>&1
+fi
+
+verify_android_lichee () {
+	name=${1%%/*}
+	if [ "$name" != "android" ] && [ "$name" != "lichee" ]; then
+		echo "Copy files and directories Error !"
+		exit
+	fi
+}
+
+#copy file
+git status  | grep -e "new file:" -e "modified:" -e "renamed:" -e "deleted:" > /tmp/log.log
+
+cat /tmp/log.log | while read line
+do 
+	GIT_FLAGS=`echo $line | awk '{print $1}'`
+	#echo $GIT_FLAGS
+	if [ $GIT_FLAGS == "new" ]; then
+		new_file=`echo $line | awk '{print $3}'`
+		new_dir=`dirname $new_file`
+		verify_android_lichee "$new_file"
+		mkdir -p $SVN_DIR/$new_dir
+		cp $new_file $SVN_DIR/$new_dir
+	elif [ $GIT_FLAGS == "renamed:" ]; then
+		source_file=`echo $line | awk '{print $2}'`
+		dest_file=`echo $line | awk '{print $4}'`
+		renamed_dir=`dirname $dest_file`
+		verify_android_lichee $source_file
+		mkdir -p $SVN_DIR/$renamed_dir
+		cp $SVN_DIR/$source_file $SVN_DIR/$dest_file
+	elif [ $GIT_FLAGS == "modified:" ]; then
+		modify_file=`echo $line | awk '{print $2}'`
+		modify_dir=`dirname $modify_file`
+		verify_android_lichee $modify_file
+		mkdir -p $SVN_DIR/$modify_dir
+		cp $modify_file $SVN_DIR/$modify_dir
+	elif [ $GIT_FLAGS == "deleted:" ]; then
+		delete_file=`echo $line | awk '{print $2}'`
+		verify_android_lichee $delete_file
+		rm -rf $SVN_DIR/$delete_file
+	fi
+done

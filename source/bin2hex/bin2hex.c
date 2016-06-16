@@ -9,7 +9,8 @@ int bin2hex(char *buf, int len)
 {
         int i = 0;
         while (len-- > 0){
-                fprintf(stdout, "0x%02x, ", buf[i++]);
+                /*fprintf(stdout, "0x%02x, ", buf[i++]);*/
+				printf( "0x%02lx,", buf[i++] & 0xFFl );
                 if ((i%16) == 0)
                         fprintf(stdout, "\n");
         }

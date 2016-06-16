@@ -1,0 +1,381 @@
+From dbc7777ab79ef6c09f6d1e463f63d71a5548bb9d Mon Sep 17 00:00:00 2001
+From: chengdongdong <zchengdongdong@gmail.com>
+Date: Mon, 6 Jun 2016 18:08:14 +0800
+Subject: [PATCH 1/4] =?UTF-8?q?=E7=94=A8=E6=88=B7=E6=95=B0=E6=8D=AE?=
+ =?UTF-8?q?=EF=BC=9A=20=E6=96=B0=E5=BB=BA=E5=88=86=E5=8C=BA=EF=BC=8C?=
+ =?UTF-8?q?=E9=A2=84=E7=BD=AE=E7=94=A8=E6=88=B7=E6=95=B0=E6=8D=AE=20?=
+ =?UTF-8?q?=E6=B3=A8=E9=87=8A=EF=BC=9A=20=09=E5=B0=86=E9=A2=84=E7=BD=AE?=
+ =?UTF-8?q?=E7=9A=84=E6=95=B0=E6=8D=AE=E6=94=BE=E5=9C=A8tools/skyres/?=
+ =?UTF-8?q?=E7=9B=AE=E5=BD=95=E4=B8=8B=EF=BC=8C=20=09=E7=BC=96=E8=AF=91?=
+ =?UTF-8?q?=E7=83=A7=E5=BD=95=E7=B3=BB=E7=BB=9F=E5=90=8E=EF=BC=8C=E9=A2=84?=
+ =?UTF-8?q?=E7=BD=AE=E7=9A=84=E6=95=B0=E6=8D=AE=E5=9C=A8=E7=9B=AE=E6=A0=87?=
+ =?UTF-8?q?=E6=9D=BF=E7=9A=84/skyres=E7=9B=AE=E5=BD=95=E4=B8=8B?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ android/build/core/Makefile                        |   34 +-
+ android/build/core/envsetup.mk                     |    3 +
+ android/build/core/main.mk                         |   10 +-
+ android/build/core/product.mk                      |    1 +
+ android/build/tools/releasetools/build_image.py    |    5 +
+ android/device/softwinner/wing-common/init.rc      |    8 +
+ .../device/softwinner/wing-common/mount_file.sh    |   26 +
+ .../device/softwinner/wing-common/wing-common.mk   |    1 +
+ android/device/softwinner/wing-k70/BoardConfig.mk  |    3 +-
+ android/device/softwinner/wing-k70/fstab.sun7i     |    1 +
+ android/external/sepolicy/file_contexts            |    5 +
+ .../configs/android/wing-k70/sys_partition.fex     |    7 +
+ lichee/tools/pack/pack                             |    1 +
+ tools/skyres/ReadMe.txt                            |   17 +
+ 480 files changed, 8933 insertions(+), 3 deletions(-)
+ create mode 100755 android/device/softwinner/wing-common/mount_file.sh
+ create mode 100755 tools/skyres/ReadMe.txt
+
+diff --git a/android/build/core/Makefile b/android/build/core/Makefile
+index 0f4bf91..bd7093a 100644
+--- a/android/build/core/Makefile
++++ b/android/build/core/Makefile
+@@ -403,7 +403,11 @@ INTERNAL_BOOTIMAGE_FILES := $(filter-out --%,$(INTERNAL_BOOTIMAGE_ARGS))
+ 
+ BOARD_KERNEL_CMDLINE := $(strip $(BOARD_KERNEL_CMDLINE))
+ ifdef BOARD_KERNEL_CMDLINE
+-  INTERNAL_BOOTIMAGE_ARGS += --cmdline "$(BOARD_KERNEL_CMDLINE)"
++ifeq ($(TARGET_BUILD_VARIANT),user)
++  INTERNAL_BOOTIMAGE_ARGS += --cmdline "$(BOARD_KERNEL_CMDLINE) loglevel=0"
++else
++  INTERNAL_BOOTIMAGE_ARGS += --cmdline "$(BOARD_KERNEL_CMDLINE) loglevel=4"
++endif
+ endif
+ 
+ BOARD_KERNEL_BASE := $(strip $(BOARD_KERNEL_BASE))
+@@ -610,6 +614,7 @@ define generate-userimage-prop-dictionary
+ $(if $(INTERNAL_USERIMAGES_EXT_VARIANT),$(hide) echo "fs_type=$(INTERNAL_USERIMAGES_EXT_VARIANT)" >> $(1))
+ $(if $(BOARD_SYSTEMIMAGE_PARTITION_SIZE),$(hide) echo "system_size=$(BOARD_SYSTEMIMAGE_PARTITION_SIZE)" >> $(1))
+ $(if $(BOARD_USERDATAIMAGE_PARTITION_SIZE),$(hide) echo "userdata_size=$(BOARD_USERDATAIMAGE_PARTITION_SIZE)" >> $(1))
++$(if $(BOARD_SKYRESIMAGE_PARTITION_SIZE),$(hide) echo "skyres_size=$(BOARD_SKYRESIMAGE_PARTITION_SIZE)" >> $(1))
+ $(if $(BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE),$(hide) echo "cache_fs_type=$(BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE)" >> $(1))
+ $(if $(BOARD_CACHEIMAGE_PARTITION_SIZE),$(hide) echo "cache_size=$(BOARD_CACHEIMAGE_PARTITION_SIZE)" >> $(1))
+ $(if $(BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE),$(hide) echo "vendor_fs_type=$(BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE)" >> $(1))
+@@ -1022,6 +1027,33 @@ $(INSTALLED_USERDATATARBALL_TARGET): $(FS_GET_STATS) $(INTERNAL_USERDATAIMAGE_FI
+ userdatatarball-nodeps: $(FS_GET_STATS)
+ 	$(build-userdatatarball-target)
+ 
++################### sykres ########################
++
++INTERNAL_SKYRESIMAGE_FILES := $(TARGET_OUT_SKYRES)/ReadMe.txt
++skyresimage_intermediates := \
++    $(call intermediates-dir-for,PACKAGING,skyres)
++
++define build-skyresimage-target
++  $(call pretty,"Target skyres fs image: $(INSTALLED_SKYRESIMAGE_TARGET)")
++  @mkdir -p $(TARGET_OUT_SKYRES)
++  @mkdir -p $(skyresimage_intermediates) && rm -rf $(skyresimage_intermediates)/skyres_image_info.txt
++  $(call generate-userimage-prop-dictionary, $(skyresimage_intermediates)/skyres_image_info.txt, skip_fsck=true)
++  $(hide) PATH=$(foreach p,$(INTERNAL_USERIMAGES_BINARY_PATHS),$(p):)$$PATH \
++      ./build/tools/releasetools/build_image.py \
++      $(TARGET_OUT_SKYRES) $(skyresimage_intermediates)/skyres_image_info.txt $(BUILT_SKYRESIMAGE_TARGET)
++endef
++
++BUILT_SKYRESIMAGE_TARGET := $(PRODUCT_OUT)/skyres.img
++INSTALLED_SKYRESIMAGE_TARGET := $(BUILT_SKYRESIMAGE_TARGET)
++$(INSTALLED_SKYRESIMAGE_TARGET): $(INTERNAL_USERIMAGES_DEPS) \
++                                   $(INTERNAL_SKYRESIMAGE_FILES)
++	$(build-skyresimage-target)
++
++.PHONY: skyresimage-nodeps
++skyresimage-nodeps: | $(INTERNAL_USERIMAGES_DEPS)
++	$(build-skyresimage-target)
++
++################### end ########################
+ 
+ # -----------------------------------------------------------------
+ # cache partition image
+diff --git a/android/build/core/envsetup.mk b/android/build/core/envsetup.mk
+index 8ac437e..2571c07 100644
+--- a/android/build/core/envsetup.mk
++++ b/android/build/core/envsetup.mk
+@@ -106,6 +106,7 @@ endif
+ # Define them here so they can be used in product config files.
+ TARGET_COPY_OUT_SYSTEM := system
+ TARGET_COPY_OUT_DATA := data
++TARGET_COPY_OUT_SKYRES := skyres
+ TARGET_COPY_OUT_VENDOR := system/vendor
+ TARGET_COPY_OUT_ROOT := root
+ TARGET_COPY_OUT_RECOVERY := recovery
+@@ -214,6 +215,8 @@ TARGET_OUT_DATA_ETC := $(TARGET_OUT_ETC)
+ TARGET_OUT_DATA_NATIVE_TESTS := $(TARGET_OUT_DATA)/nativetest
+ TARGET_OUT_DATA_FAKE := $(TARGET_OUT_DATA)/fake_packages
+ 
++TARGET_OUT_SKYRES := $(PWD)/../tools/$(TARGET_COPY_OUT_SKYRES)
++
+ TARGET_OUT_CACHE := $(PRODUCT_OUT)/cache
+ 
+ TARGET_OUT_VENDOR := $(PRODUCT_OUT)/$(TARGET_COPY_OUT_VENDOR)
+diff --git a/android/build/core/main.mk b/android/build/core/main.mk
+index d424b25..f1b10ff 100644
+--- a/android/build/core/main.mk
++++ b/android/build/core/main.mk
+@@ -79,6 +79,7 @@ dont_bother_goals := clean clobber dataclean installclean \
+     stnod systemtarball-nodeps \
+     userdataimage-nodeps userdatatarball-nodeps \
+     cacheimage-nodeps \
++    skyresimage-nodeps \
+     vendorimage-nodeps \
+     ramdisk-nodeps \
+     bootimage-nodeps
+@@ -342,7 +343,10 @@ endif # !enable_target_debugging
+ 
+ ## eng ##
+ 
+-ifeq ($(TARGET_BUILD_VARIANT),eng)
++#chengdongdong 20160119
++#ifeq ($(TARGET_BUILD_VARIANT),eng)
++ifeq ($(strip $(TARGET_BUILD_VARIANT)), $(filter $(TARGET_BUILD_VARIANT), eng user))
++
+ tags_to_install := debug eng
+ ifneq ($(filter ro.setupwizard.mode=ENABLED, $(call collapse-pairs, $(ADDITIONAL_BUILD_PROPERTIES))),)
+   # Don't require the setup wizard on eng builds
+@@ -747,6 +751,9 @@ boottarball: $(INSTALLED_BOOTTARBALL_TARGET)
+ .PHONY: userdataimage
+ userdataimage: $(INSTALLED_USERDATAIMAGE_TARGET)
+ 
++.PHONY: skyresimage
++skyresimage: $(INSTALLED_SKYRESIMAGE_TARGET)
++
+ ifneq (,$(filter userdataimage, $(MAKECMDGOALS)))
+ $(call dist-for-goals, userdataimage, $(BUILT_USERDATAIMAGE_TARGET))
+ endif
+@@ -784,6 +791,7 @@ droidcore: files \
+ 	$(INSTALLED_BOOTIMAGE_TARGET) \
+ 	$(INSTALLED_RECOVERYIMAGE_TARGET) \
+ 	$(INSTALLED_USERDATAIMAGE_TARGET) \
++	$(INSTALLED_SKYRESIMAGE_TARGET) \
+ 	$(INSTALLED_CACHEIMAGE_TARGET) \
+ 	$(INSTALLED_VENDORIMAGE_TARGET) \
+ 	$(INSTALLED_FILES_FILE)
+diff --git a/android/build/core/product.mk b/android/build/core/product.mk
+index a2f4abc..13df239 100644
+--- a/android/build/core/product.mk
++++ b/android/build/core/product.mk
+@@ -244,6 +244,7 @@ _product_stash_var_list += \
+ 	BOARD_RECOVERYIMAGE_PARTITION_SIZE \
+ 	BOARD_SYSTEMIMAGE_PARTITION_SIZE \
+ 	BOARD_USERDATAIMAGE_PARTITION_SIZE \
++	BOARD_SKYRESIMAGE_PARTITION_SIZE \
+ 	BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE \
+ 	BOARD_CACHEIMAGE_PARTITION_SIZE \
+ 	BOARD_FLASH_BLOCK_SIZE \
+diff --git a/android/build/tools/releasetools/build_image.py b/android/build/tools/releasetools/build_image.py
+index f8f2ada..e02f22e 100755
+--- a/android/build/tools/releasetools/build_image.py
++++ b/android/build/tools/releasetools/build_image.py
+@@ -131,6 +131,9 @@ def ImagePropFromGlobalDict(glob_dict, mount_point):
+   elif mount_point == "vendor":
+     copy_prop("vendor_fs_type", "fs_type")
+     copy_prop("vendor_size", "partition_size")
++  elif mount_point == "skyres":
++    copy_prop("fs_type", "fs_type")
++    copy_prop("skyres_size", "partition_size")
+ 
+   return d
+ 
+@@ -169,6 +172,8 @@ def main(argv):
+     mount_point = "cache"
+   elif image_filename == "vendor.img":
+     mount_point = "vendor"
++  elif image_filename == "skyres.img":
++    mount_point = "skyres"
+   else:
+     print >> sys.stderr, "error: unknown image file name ", image_filename
+     exit(1)
+diff --git a/android/device/softwinner/wing-common/init.rc b/android/device/softwinner/wing-common/init.rc
+index 76f2d4b..e6147b6 100755
+--- a/android/device/softwinner/wing-common/init.rc
++++ b/android/device/softwinner/wing-common/init.rc
+@@ -60,6 +60,7 @@ loglevel 3
+     mkdir /data 0771 system system
+     mkdir /cache 0770 system cache
+     mkdir /config 0500 root root
++    mkdir /skyres 0777 system system
+ 
+     # See storage config details at http://source.android.com/tech/storage/
+     mkdir /mnt/shell 0700 shell shell
+@@ -184,6 +185,7 @@ on post-fs-data
+     # We chown/chmod /data again so because mount is run as root + defaults
+     chown system system /data
+     chmod 0771 /data
++    chmod 0777 /skyres
+     # We restorecon /data in case the userdata partition has been reset.
+     restorecon /data
+ 
+@@ -497,6 +499,12 @@ service sensors /sbin/busybox sh /system/bin/sensors.sh
+ on property:sys.sensors=1
+     start sensors
+ 
++service mountfile /system/bin/mount_file.sh
++    class core
++    user root
++    oneshot
++    group system sdcard_rw
++
+ service servicemanager /system/bin/servicemanager
+     class core
+     user system
+diff --git a/android/device/softwinner/wing-common/mount_file.sh b/android/device/softwinner/wing-common/mount_file.sh
+new file mode 100755
+index 0000000..e55e9b4
+--- /dev/null
++++ b/android/device/softwinner/wing-common/mount_file.sh
+@@ -0,0 +1,26 @@
++#!/system/bin/sh
++
++skyres_flags=
++
++while true
++do
++	#copy iflytek
++	mount | grep "\/mnt\/sdcard"
++	if [ $? -eq 0 ] ; then
++		if [ ! -d "/sdcard/iflytek" ] || [ ! -d "/data/skyres" ] ; then
++			cp -rf /skyres/iflytek /mnt/sdcard/
++			sync
++			mkdir /data/skyres
++		fi
++		exit 0
++	fi
++
++	#add chmod -R 777 /skyres
++	mount | grep "\/skyres"
++	if [ $? -eq 0 ] && [ -z $skyres_flags ] ; then
++		chown system:sdcard_rw /skyres
++		chmod -R 777 /skyres
++		skyres_flags=true
++	fi
++	sleep 2
++done
+diff --git a/android/device/softwinner/wing-common/wing-common.mk b/android/device/softwinner/wing-common/wing-common.mk
+index 2d7caeb..e9b433f 100755
+--- a/android/device/softwinner/wing-common/wing-common.mk
++++ b/android/device/softwinner/wing-common/wing-common.mk
+@@ -188,6 +188,7 @@ PRODUCT_COPY_FILES += \
+ 	device/softwinner/wing-common/chrome-command-line:/system/etc/chrome-command-line
+ 
+ PRODUCT_COPY_FILES += \
++    device/softwinner/wing-common/mount_file.sh:system/bin/mount_file.sh \
+     device/softwinner/wing-common/sensors.sh:system/bin/sensors.sh
+ 
+ # init.rc, kernel
+diff --git a/android/device/softwinner/wing-k70/BoardConfig.mk b/android/device/softwinner/wing-k70/BoardConfig.mk
+index beace4c..7e5a766 100644
+--- a/android/device/softwinner/wing-k70/BoardConfig.mk
++++ b/android/device/softwinner/wing-k70/BoardConfig.mk
+@@ -13,11 +13,12 @@ TARGET_NO_KERNEL := false
+ 
+ INSTALLED_KERNEL_TARGET := kernel
+ BOARD_KERNEL_BASE := 0x40000000
+-BOARD_KERNEL_CMDLINE := 
++BOARD_KERNEL_CMDLINE := console=ttyS0,115200 root=/dev/mmcblk0p7 init=/init
+ TARGET_USERIMAGES_USE_EXT4 := true
+ BOARD_FLASH_BLOCK_SIZE := 4096
+ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 771751936
+ #BOARD_USERDATAIMAGE_PARTITION_SIZE := 
++BOARD_SKYRESIMAGE_PARTITION_SIZE := 10737418240
+ 
+ # recovery stuff
+ #TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
+diff --git a/android/device/softwinner/wing-k70/fstab.sun7i b/android/device/softwinner/wing-k70/fstab.sun7i
+index b94d9cd..4c6f108 100755
+--- a/android/device/softwinner/wing-k70/fstab.sun7i
++++ b/android/device/softwinner/wing-k70/fstab.sun7i
+@@ -7,6 +7,7 @@
+ /dev/block/by-name/cache                /cache              ext4    noatime,nosuid,nodev,nomblk_io_submit,barrier=1                         wait,check
+ #/dev/block/by-name/UDISK                /data               ext4    noatime,nosuid,nodev,nomblk_io_submit,barrier=1,noauto_da_alloc         wait,check,encryptable=/dev/block/by-name/databk
+ /dev/block/by-name/data                 /data               ext4    noatime,nosuid,nodev,nomblk_io_submit,barrier=1,noauto_da_alloc         wait,check
++/dev/block/by-name/skyres               /skyres             ext4    noatime,nosuid,nodev,nomblk_io_submit,barrier=1,noauto_da_alloc         wait,check
+ #/devices/virtual/block/nandk            auto                vfat    defaults                                                                wait,check,voldmanaged=sdcard:auto
+ /devices/platform/sunxi-mmc.2/mmc_host  auto                vfat    defaults                                                                wait,check,voldmanaged=sdcard:auto
+ /devices/platform/sunxi-mmc.0/mmc_host  auto                vfat    defaults                                                                wait,check,voldmanaged=extsd1:auto
+diff --git a/android/external/sepolicy/file_contexts b/android/external/sepolicy/file_contexts
+index 81b9da9..6a413dd 100644
+--- a/android/external/sepolicy/file_contexts
++++ b/android/external/sepolicy/file_contexts
+@@ -158,6 +158,11 @@
+ /vendor(/.*)?		u:object_r:system_file:s0
+ /vendor/bin/gpsd	u:object_r:gpsd_exec:s0
+ #############################
++# skyres files
++#
++/skyres(/.*)?		u:object_r:system_data_file:s0
++
++#############################
+ # Data files
+ #
+ /data(/.*)?		u:object_r:system_data_file:s0
+diff --git a/lichee/tools/pack/chips/sun7i/configs/android/wing-k70/sys_partition.fex b/lichee/tools/pack/chips/sun7i/configs/android/wing-k70/sys_partition.fex
+index f1fe4f4..8aa01a1 100644
+--- a/lichee/tools/pack/chips/sun7i/configs/android/wing-k70/sys_partition.fex
++++ b/lichee/tools/pack/chips/sun7i/configs/android/wing-k70/sys_partition.fex
+@@ -106,6 +106,13 @@ size = 16384
+     ro           = 0
+     user_type    = 0x8000
+ 
++;------------------------------>mmcblk0p15/nandl, 300M
++[partition]
++    name         = skyres
++    size         = 20971520
++    downloadfile = "skyres.fex"
++    user_type    = 0x8000
++
+ ;------------------------------>nandk, UDISK
+ [partition]
+     name         = UDISK
+diff --git a/lichee/tools/pack/pack b/lichee/tools/pack/pack
+index 05e610b3..e4e4f0f 100755
+--- a/lichee/tools/pack/pack
++++ b/lichee/tools/pack/pack
+@@ -250,6 +250,7 @@ do_pack_crane()
+     ln -s $CRANE_IMAGE_OUT/boot.img boot.fex
+     ln -s $CRANE_IMAGE_OUT/system.img system.fex
+     ln -s $CRANE_IMAGE_OUT/recovery.img recovery.fex
++    ln -s $CRANE_IMAGE_OUT/skyres.img skyres.fex
+     ###$CRANE_IMAGE_OUT/carconfig.img
+     ln -s $CRANE_IMAGE_OUT/carconfig.img carconfig.fex
+ 	if [ ${PACK_SIG} = "sig" ]; then
+diff --git a/tools/skyres/ReadMe.txt b/tools/skyres/ReadMe.txt
+new file mode 100755
+index 0000000..31fe2d6
+--- /dev/null
++++ b/tools/skyres/ReadMe.txt
+@@ -0,0 +1,17 @@
++预置用户数据目录
++
++将需要预置的文件文件夹放在该目录
++
++在目标机的/skyres目录查看预置内容
++
++#######################################
++
++注：
++
++Readme.txt 	
++预置内容说明文档
++
++iflytek
++科大讯飞离线语音包
++
++
+literal 0
+HcmV?d00001
+
+diff --git a/tools/skyres/iflytek/res/tts/ttsmark.txt b/tools/skyres/iflytek/res/tts/ttsmark.txt
+new file mode 100644
+index 0000000..6bfc107
+--- /dev/null
++++ b/tools/skyres/iflytek/res/tts/ttsmark.txt
+@@ -0,0 +1 @@
++Resource.irf,f8c604431796fb0aa3c8d9f1a5959e8c
+-- 
+2.8.1
+

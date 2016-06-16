@@ -13,7 +13,7 @@ adb shell "rm ${ARMdir}/*.png"
 DATE=`date +"%Y%m%d-%H%M%S"`
 for K in $( seq 1 $1 )
 do
-	echo adb shell screencap -p ${K}.png
+	#echo adb shell screencap -p ${K}.png
 	adb shell screencap -p ${ARMdir}/"scap"${K}.png
 done
 
@@ -22,6 +22,8 @@ mkdir -p $PCdir
 
 for K in $( seq 1 $1 )
 do
-	echo adb pull ${ARMdir}/"scap"${K}.png $PCdir/${DATE}"-Scap"${K}.png
-	adb pull ${ARMdir}/"scap"${K}.png $PCdir/${DATE}"-Scap"${K}.png
+	adb pull ${ARMdir}/"scap"${K}.png $PCdir/${DATE}"-Scap"${K}.png  > /dev/null 2>&1
+	echo -e '\033[0;33;1m'
+	echo "  file: $PCdir/${DATE}"-Scap"${K}.png"
+	echo -e '\033[0m'
 done
