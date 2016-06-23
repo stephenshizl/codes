@@ -1,0 +1,77 @@
+#!/bin/bash
+########################################################################
+# File Name: getcode.sh
+# Author: chengdong
+# mail: zchengdongdong@gmail.com
+# Created Time: Fri 17 Jun 2016 03:17:50 PM CST
+########################################################################
+
+T=`pwd -P`
+SVN_TOP="svn://192.168.0.246/sw12_skyworthauto/projects"
+
+N_Project="N/N平台车机"
+M_Project="M"
+
+projects="NS5500 NS10100 MS1600"
+
+if [[ $# -lt 1 ]]
+then 
+cat<<EOF
+
+===========================================================
+
+NAME
+	sky-getcode - get svn server codes
+
+SYNOPSIS
+	./build.sh <PROJECTS>
+
+PROJECTS
+$projects
+
+EXAMPLES
+	sky-getcode NS10100
+
+===========================================================
+
+EOF
+exit 1
+fi
+set -e 
+
+case $1 in
+	NS5500|ns5500|5500)
+		name=NS5500
+		SVN_DIR=$SVN_TOP/$N_Project/$name/sw
+		shift 1
+		;;
+	NS10100|ns10100|10100)
+		name=NS10100
+		SVN_DIR=$SVN_TOP/$N_Project/$name/sw
+		shift 1
+		;;
+	MS1600|ms1600|1600)
+		name=MS1600
+		SVN_DIR=$SVN_TOP/$M_Project/$name/sw
+		shift 1
+		;;
+	*)
+		name=obj/KERNEL
+		SRC_DIR=$(pwd -P)
+		OUT_DIR=${M}/${MOUT}
+		;;
+esac
+
+get_dir=`svn list $SVN_DIR`
+for file in $get_dir
+do
+	if [[ -d $name/$file ]]; then
+		echo "cannot create directory ‘$name/$file’: File exists"
+		exit 1
+	fi
+done
+
+mkdir -p $name
+pushd $name > /dev/null 
+svn co $SVN_DIR
+popd > /dev/null 

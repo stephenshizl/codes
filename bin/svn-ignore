@@ -1,0 +1,47 @@
+#!/bin/bash
+########################################################################
+# File Name: ignore.sh
+# Author: chengdong
+# mail: zchengdongdong@gmail.com
+# Created Time: Fri 17 Jun 2016 06:30:13 PM CST
+########################################################################
+Svn_StFile=/tmp/svn_st.log
+
+svn st > $Svn_StFile
+svn status | grep "^\?" | awk "{print \$2}" > $Svn_StFile
+Svn_StCount=`cat $Svn_StFile | wc -l`
+
+for (( i=1; i<=$Svn_StCount; i++ ))
+do
+	svn_file=`sed -n ${i}p $Svn_StFile`
+
+	if [ "$1" == "clean" ]; then
+		rm -rf $svn_file
+		continue
+	fi
+
+	dirname=`dirname $svn_file`
+	basename=`basename $svn_file`
+	if [ $i -eq $Svn_StCount ]; then
+		n_dirname=""
+	else
+		svn_n_file=`sed -n $((i+1))p $Svn_StFile`
+		n_dirname=`dirname $svn_n_file`
+	fi
+
+	pushd $dirname > /dev/null 2>&1
+	echo $basename >> .svnignore
+	#if [ "$dirname" != "$n_dirname" ]; then
+		#echo "ignoring.txt" >> ignoring.txt
+		#rm .svnignore
+	#fi
+	popd > /dev/null 2>&1
+done
+
+for ignorefile in $(find . -iname .svnignore)
+do
+	svn propset svn:ignore -F $ignorefile $(dirname $ignorefile)
+	rm $ignorefile
+done
+
+rm -rf $Svn_StFile
