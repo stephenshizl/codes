@@ -2,12 +2,23 @@
 # swapper of kermit, Autodetect newer ttyUSBx
 
 #set -x
-line=$( ls /dev/ttyUSB* 2>/dev/null | tail -1 )
+
+lines=$(ls /dev/ttyUSB* 2>/dev/null)
 kermrc=~/.kermrc
 kermit=/usr/bin/kermit
+ttyx=
 
-if [[ -n $line && -e $kermrc ]]; then
-sed -i "/set.*line/s/tty.*/${line##*/}/" $kermrc
+for line in $lines
+do
+	if [ -z "$(lsof -c kermit | grep ${line##*/})" ] ; then
+		ttyx=$line	
+		break
+	fi
+done
+
+if [[ -n $ttyx && -e $kermrc ]]; then
+	sed -i "/set.*line/s/tty.*/${ttyx##*/}/" $kermrc
+	sed -i "/log.*session/s/kermit.*/kermit_${ttyx##*/}\.log/" $kermrc
 fi
 
 $kermit $@

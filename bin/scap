@@ -6,24 +6,35 @@
 # Created Time: Fri 05 Dec 2014 11:13:26 AM CST
 ########################################################################
 
+set -e 
+
 ARMdir=/sdcard/adb_screencap
+PCdir=/tmp/adb_screencat
+ARGS=$1
+
+[[ -n "$ARGS" ]] && ((ARGS--))
+
+adb devices > /dev/null
+
+mkdir -p $PCdir
 adb shell "mkdir -p ${ARMdir}"
-adb shell "rm ${ARMdir}/*.png"
+adb shell "rm -rf ${ARMdir}/*.png"
 
 DATE=`date +"%Y%m%d-%H%M%S"`
-for K in $( seq 1 $1 )
+file_num=`ls $PCdir | wc -l`
+
+((file_num+=1))
+
+for K in $( seq $file_num $((file_num+ARGS)) )
 do
 	#echo adb shell screencap -p ${K}.png
 	adb shell screencap -p ${ARMdir}/"scap"${K}.png
 done
 
-PCdir=/tmp/adb_screencat
-mkdir -p $PCdir
-
-for K in $( seq 1 $1 )
+for K in $( seq $file_num $((file_num+ARGS)) )
 do
 	adb pull ${ARMdir}/"scap"${K}.png $PCdir/${DATE}"-Scap"${K}.png  > /dev/null 2>&1
-	echo -e '\033[0;33;1m'
-	echo "  file: $PCdir/${DATE}"-Scap"${K}.png"
+	echo -en '\033[0;33;1m'
+	echo -n "  file: $PCdir/${DATE}"-Scap"${K}.png"
 	echo -e '\033[0m'
 done
