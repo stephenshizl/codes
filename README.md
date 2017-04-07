@@ -2,14 +2,21 @@ codes
 =====
 目录
 
+app:
+	应用程序
+
 init.d:
 
 	PC机的一些启动配制文件
 
 bin:
 
-	PC可以使用的便捷命令
+	Linux 下的生成一些便捷命令
 
-source:
+kernel:
 
-	一些测试程序，可测试开发板某些功能
+	Linux 内核代码及教材示例
+
+tools:
+
+	平台下脚本工具
