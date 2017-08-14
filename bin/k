@@ -8,6 +8,14 @@ kermrc=~/.kermrc
 kermit=/usr/bin/kermit
 ttyx=
 
+if [ "x$1" == "x1500000" ] ; then 
+	kermit=~/codes/bin/wermit
+	sed -i 's/115200/1500000/' $kermrc
+	shift 
+else
+	sed -i 's/1500000/115200/' $kermrc
+fi
+
 for line in $lines
 do
 	if [ -z "$(lsof -c kermit | grep ${line##*/})" ] ; then

@@ -14,31 +14,30 @@
 #define TRUE 1
 #define FALSE 0
 #include <errno.h>
+
 int speed_arr[] = {B115200, B38400, B19200, B9600, B4800, B2400, B1200, B300,
           		   B115200, B38400, B19200, B9600, B4800, B2400, B1200, B300, };
 int name_arr[] = {115200, 38400, 19200, 9600, 4800, 2400, 1200,  300, 
 		  		  115200, 38400, 19200, 9600, 4800, 2400, 1200,  300, };
 void set_speed(int fd, int speed)
 {
-		int i;
-		int status;
-		struct
-				termios opt;
-		tcgetattr(fd, &opt);
-		for( i = 0; i < sizeof(speed_arr)/sizeof(int); i++) {
-				if(speed == name_arr[i]) {
-						printf("set speed!\n");
-						tcflush(fd, TCIOFLUSH);
-						cfsetispeed(&opt, speed_arr[i]);
-						cfsetospeed(&opt, speed_arr[i]);
-						status = tcsetattr(fd, TCSANOW, &opt);
-						if(status != 0)
-								perror("tcsetattr fd1");
-						return;
-				}
-				printf("no set speed!\n");
-				tcflush(fd, TCIOFLUSH);
+	int i;
+	int status;
+	struct termios opt;
+	tcgetattr(fd, &opt);
+	for( i = 0; i < sizeof(speed_arr)/sizeof(int); i++) {
+		if(speed == name_arr[i]) {
+			printf("set speed %d!\n", name_arr[i]);
+			tcflush(fd, TCIOFLUSH);
+			cfsetispeed(&opt, speed_arr[i]);
+			cfsetospeed(&opt, speed_arr[i]);
+			status = tcsetattr(fd, TCSANOW, &opt);
+			if(status != 0)
+				perror("tcsetattr fd1");
+			return;
 		}
+		tcflush(fd, TCIOFLUSH);
+	}
 }
 /**
  *@brief 设置串口数据位,停止位和效验位
@@ -61,14 +60,14 @@ int set_Parity(int fd,int databits,int stopbits,int parity)
 	options.c_cflag &= ~CSIZE; 
 	switch (databits) /*设置数据位数*/
 	{   
-	case 7:		
-		options.c_cflag |= CS7; 
-		break;
-	case 8:     
-		options.c_cflag |= CS8;
-		break;   
-	default:    
-		fprintf(stderr,"Unsupported data size\n"); return (FALSE);  
+		case 7:		
+			options.c_cflag |= CS7; 
+			break;
+		case 8:     
+			options.c_cflag |= CS8;
+			break;   
+		default:    
+			fprintf(stderr,"Unsupported data size\n"); return (FALSE);  
 	}
 	switch (parity) 
 	{   
@@ -95,7 +94,7 @@ int set_Parity(int fd,int databits,int stopbits,int parity)
 		default:   
 			fprintf(stderr,"Unsupported parity\n");    
 			return (FALSE);  
-		}  
+	}  
 	/* 设置停止位*/  
 	switch (stopbits)
 	{   
@@ -104,10 +103,10 @@ int set_Parity(int fd,int databits,int stopbits,int parity)
 			break;  
 		case 2:    
 			options.c_cflag |= CSTOPB;  
-		   break;
+			break;
 		default:    
-			 fprintf(stderr,"Unsupported stop bits\n");  
-			 return (FALSE); 
+			fprintf(stderr,"Unsupported stop bits\n");  
+			return (FALSE); 
 	} 
 	/* Set input parity option */ 
 	if (parity != 'n')   
@@ -129,26 +128,26 @@ int set_Parity(int fd,int databits,int stopbits,int parity)
  */
 int OpenDev(char *Dev)
 {
-		int fd = open( Dev, O_RDWR );
-		if (-1 == fd) //| O_NOCTTY | O_NDELAY
-		{ /*设置数据位数*/
-				perror("Can't Open Serial Port");
-				return -1;
-		} else
-				return fd;
+	int fd = open( Dev, O_RDWR );
+	if (-1 == fd) //| O_NOCTTY | O_NDELAY
+	{ /*设置数据位数*/
+		perror("Can't Open Serial Port");
+		return -1;
+	} else
+		return fd;
 }
 
 static void changestr(char *str, char * out_str)
 {
-		int i = 0;
-		int j = 0;
-		while((str[i++]) && (i <= 1024)) {
-				if(str[i-1] == ',') {
-						out_str[j] = ' ';
-				}else
-						out_str[j] = str[i-1];
-				j++;
-		}
+	int i = 0;
+	int j = 0;
+	while((str[i++]) && (i <= 1024)) {
+		if(str[i-1] == ',') {
+			out_str[j] = ' ';
+		}else
+			out_str[j] = str[i-1];
+		j++;
+	}
 }
 /**
  *@breif
@@ -156,43 +155,60 @@ static void changestr(char *str, char * out_str)
  */
 int main(int argc, char **argv)
 {
-		int fd;
-		int nread;
-		char buff[512];
-		char *dev ="/dev/ttyS2";
-		char write_info[1024];
-		char write_ch[256];
-		fd = OpenDev(dev); //根据设备节点,打开相应的 uart
-		if (fd>0) //设备波特率
-				set_speed(fd,115200);
-		else {
-				printf("Can't Open Serial Port!\n");
-				exit(0);
-		}
-		
-		//设置数据格式
-		if (set_Parity(fd,8,1,'N')== FALSE) {
-			printf("Set Parity Error\n");
-			exit(1);
-		}
-		scanf("%s", write_info);
-		changestr(write_info, write_ch);
-		sprintf(write_ch,"%s\n",write_ch);
-		printf("write_info:%s\n", write_info);
-		nread = write(fd, write_ch, sizeof(write_ch)/sizeof(char));//写测试
-		/*close(fd);*/
-		while(1)
-		{
-				//读测试
-				while((nread = read(fd,buff,512))>0)
-				{
-						printf("\nLen %d\n",nread);
-						buff[nread+1]='\0';
-						printf("\n%s",buff);
+	int fd;
+	int nread;
+	char buff[1024];
+	char *dev ="/dev/ttyUSB0";
+	char write_info[1024];
+	char write_ch[256];
+	int i,skip;
 
+	fd = OpenDev(dev); //根据设备节点,打开相应的 uart
+	if (fd>0) //设备波特率
+		set_speed(fd,115200);
+	else {
+		printf("Can't Open Serial Port!\n");
+		exit(0);
+	}
+
+	//设置数据格式
+	if (set_Parity(fd,8,1,'N')== FALSE) {
+		printf("Set Parity Error\n");
+		exit(1);
+	}
+	printf("input command: ");
+	scanf("%s", write_info);
+	changestr(write_info, write_ch);
+	sprintf(write_ch,"%s\n",write_ch);
+	/*printf("write info: %s\n", write_info);*/
+	nread = write(fd, write_ch, sizeof(write_ch)/sizeof(char));//写测试
+	while(1)
+	{
+		//读测试
+		while((nread = read(fd,buff,1024))>0)
+		{
+			for (i=0;i<nread;i++) {
+				switch (buff[i]) {
+					case '\n':
+						skip++;
+						break;
+					case '\r':
+						break;
+					case '\b':
+						break;
+					case '\t':
+						break;
+					default:
+						skip=0;
+						break;
 				}
+
+				if (skip!=2)
+					printf("%c",buff[i]);
+			}
 		}
-		/*[>close(fd);<]*/
-		/*[>exit(0);<]*/
-		return 0;
+	}
+	close(fd);
+	exit(0);
+	return 0;
 }
